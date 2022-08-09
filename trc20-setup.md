@@ -7,9 +7,9 @@ Setup instructions for [cryptocurrency exchange script](https://codono.com/).
 Generating Main Tron account where all user deposits will Move to.
 
 You can generate Main account externally or by running following url
-
+```
 yoursite.com/Tron/makeOneAccount/securecode/cronkey
-
+```
 It would give you following type of information
 
 This informationation on refresh will vanish , it does not get saved anywhere.If you plan to use this account as Main account ,Save this information some where safe, print it and keep safe
@@ -60,19 +60,19 @@ Decimal:6
 
 
 Deposit cron: Run every min
-
+```
 https://yoursite.com/Tron/cronDeposits/securecode/cronkey
-
+```
 
 Moving Token to main account [Example USDT]
-
+```
 https://yoursite.com/Tron/moveTokenToMain/securecode/cronkey/token/usdt
-
+```
 
 Moving Tron to main account [Example USDT]
-
+```
 https://yoursite.com/Tron/moveTronToMain/securecode/cronkey/
-
+```
 
 
 
@@ -81,9 +81,9 @@ Saving ABI file [ For each token]
 Goto Token code page on tronscan
 
 Example
-
+```
 https://tronscan.io/#/token20/TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t/code
-
+```
 Copy Contract ABI
 
 
