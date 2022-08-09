@@ -1,11 +1,16 @@
 
 ![Cryptocurrency Exchange Script](cryptocurrency_Exchange_script.png?raw=true "Cryptocurrency Exchange Script")
 
+#[Cryptocurrency exchange script](https://codono.com)
+ Codono supports Auto detection of deposits, Each user is assigned with Unique deposit per coin. Deposits are detected instantly and credited to users. Withdrawals are automatic and manual approval too. Binance clone is used to develop cryptocurrency exchanges so as Binance, Huobi, and coin base. The turnkey crypto trading script provides similar crypto trading features so you can start crypto exchange within a week.
+
+![Binance clone](cryptocurrency_Exchange_script_binance_clone_codono.png?raw=true "Binance clone")
+
 #[Binance clone](https://codono.com)
 The solution for the trading of assets such as cryptocurrencies, tokens, fiats other assets. Script has market-making or liquidity options provided. Codono supports All fiat currencies. so you can create a market Between Fiat-Crypto, Fiat-Fiat, and Crypto-Crypto. Moreover it supports almost any Coin/Token, ie Bitcoin[BTC,LTC,Doge] , Tron [Trc10+TRC20]*, Ethereum Based[ ETH -ERC20, BNB-BEP20, FTM, SOL, Private Networks], XRP, XMR, Waves ,Coinpayments, and many more.
 
-#[Cryptocurrency exchange script](https://codono.com)
- Codono supports Auto detection of deposits, Each user is assigned with Unique deposit per coin. Deposits are detected instantly and credited to users. Withdrawals are automatic and manual approval too. Binance clone is used to develop cryptocurrency exchanges so as Binance, Huobi, and coin base. The turnkey crypto trading script provides similar crypto trading features so you can start crypto exchange within a week.
+
+![Cryptocurrency Exchange software](Download-Cryptocurrency-Exchange-Script-Cryptocurrency-Exchange-Software.png?raw=true "Cryptocurrency Exchange software")
  
 #[Cryptocurrency exchange Software](https://codono.com/download/)
 Codono is developing a Binance clone for 6 years suitable for small to enterprise scale firms. You can get cryptocurrency exchange development services like Web version or mobile app deployment to allow users to trade easily.
