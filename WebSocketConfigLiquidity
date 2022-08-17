@@ -1,0 +1,60 @@
+Disclaimer.
+
+Step1. Open other_config.php
+
+
+and make sure following values are enabled /added
+
+define('SOCKET_WS_ENABLE',1); //This Socket server URL
+define('SOCKET_WS_URL',"wss://localhost:7272"); //wss for live sites
+
+change  wss://localhost:7272 to wss://rapid.codono.com/wsocket [ your own domain]
+
+Step2.
+
+Enabling 7272 port for wss .
+
+You would need to enable 7272 on your server for websocket, so system can broadcast message and read from it .
+
+Step3. Starting Sockets
+
+On root of your installation Type in
+
+php socketbot.php start
+
+You can make it to run in background as well.
+
+
+NGINX forwarding 
+location ~/wsocket(.*)$ {
+    proxy_set_header X-Real-IP  $remote_addr;
+    proxy_set_header X-Forwarded-For $remote_addr;
+    proxy_set_header Host $host;
+    proxy_pass http://localhost:7272;
+}
+
+
+Setting Socket bot in Supervisorctl to always running
+
+Goto SSH -> and make sure supervisor is installed if not then
+
+sudo apt-get install supervisor
+
+cd /etc/supervisor/conf.d/
+
+sudo nano socketbot.conf
+
+
+[program:socketbot]
+directory=/var/www/vhosts/yourdomain.com/httpdocs
+command=/opt/plesk/php/7.4/bin/php socketbot.php start
+autostart=true  
+autorestart=true  
+stderr_logfile=/var/log/supervisor/socketbot.err.log  
+stdout_logfile=/var/log/supervisor/socketbot.out.log
+
+
+supervisorctl reload  
+supervisorctl
+tail -f socketbot
+
