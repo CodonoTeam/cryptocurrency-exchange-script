@@ -24,7 +24,7 @@ If you're looking for a white label blockchain solution provider, Codono is the 
 
 Crypto Exchange Script
 The Crypto Exchange Script white label blockchain solution is an open source software that is built for private and public libraries. It is not controlled by centralized entities and is therefore free to use forever. Its codebase is open and tested by developers worldwide. Openware, a leading Blockchain software development company, has created a secure and flexible white label version of the software for developers to deploy and customize cryptocurrency exchange services. The software is based on the blockchain technology and is licensed under the Commercial License.
-
+![Crypto Deposit Withdrawal](deposit_withdrawal_troubleshooting_for_Evm.png?raw=true "Crypto Deposit Withdrawal")
 Crypto Exchange Script is a hybrid solution for full-fledged exchange platform development. It is a software development kit that includes public and private libraries that allow a cryptocurrency exchange platform to be developed. It is an open-source, blockchain-based platform that allows any business to create a private and white label solution and brand it to suit their customers. 
 Crypto Exchange Script blockchain solution is a cryptocurrency exchange platform with a customizable back end and an easy-to-use user interface. The system comes with an administration panel that lets staff manage the platform's operations. It supports multi-level referral systems, double-entry accounting, and trading bots through API keys. Crypto Exchange Script has a reputable reputation and is used by some of the biggest names in the financial world.
 
