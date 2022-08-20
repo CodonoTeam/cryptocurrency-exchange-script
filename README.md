@@ -9,6 +9,7 @@
 #[Binance clone](https://codono.com)
 The solution for the trading of assets such as cryptocurrencies, tokens, fiats other assets. Script has market-making or liquidity options provided. Codono supports All fiat currencies. so you can create a market Between Fiat-Crypto, Fiat-Fiat, and Crypto-Crypto. Moreover it supports almost any Coin/Token, ie Bitcoin[BTC,LTC,Doge] , Tron [Trc10+TRC20]*, Ethereum Based[ ETH -ERC20, BNB-BEP20, FTM, SOL, Private Networks], XRP, XMR, Waves ,Coinpayments, and many more.
 
+#[Crypto Nodes Setup Guide](https://github.com/turndealer/cryoto-nodes)
 
 ![Cryptocurrency Exchange software](Download-Cryptocurrency-Exchange-Script-Cryptocurrency-Exchange-Software.png?raw=true "Cryptocurrency Exchange software")
  
