@@ -33,6 +33,25 @@ The Whitelabel Crypto Exchange Script platform offers a white label cryptocurren
 Merchants can customize for their clients for leading the way in compliant blockchain technology for the capital markets. The company is partnered with multiple ventures, decentralized finance protocols, to provide coverage for deposits and smart contracts, as well as impermanent loss protection for liquidity providers. The result is a more dependable ecosystem for all users.
 
 Software codifies regulatory guidelines on a system-level level, allowing it to easily adapt to changing rules. In addition, the system is built on smart contracts, enabling it to implement compliance changes en masse. This feature prevents fraud and other undesirable activities from occurring. Furthermore, Codono's white label blockchain solution also works with other systems and networks, so it can be integrated into the client's environment.
+It’s integrated with nodes like
+1. Btc type [BTC , BCH , LTC, DOGE , DASH , ZCASH, PivX, etc]
+2. All EVM Chains [ETH , BNB , FTM , MATIC, ERC20, BEP20, FTM20.. ] Basically all Listed here https://chainlist.org/
+3. Waves and tokens
+4. Xmr and cryptonote
+6. XRP
+7. Coinpayments[ 2000 + coins and tokens]
+8. Trx Trc20/Trc10* [With Zues/Ultra Only]
+9. Blockgum integration
+10. Polkadot
+11. Nexa Chain and Tokens
+
+Fiat Gateways
+1.Bank deposit
+2.Authorize.net
+3.YocoPayments
+6.Uganda Mobile payments
+
+We can add any Crypto method or Fiat gateway to Exchange software
 ```
 Codono's white-label blockchain solution lets financial institutions and other institutions leverage the technology to create and maintain a compliant digital asset ecosystem. The company's end-to-end products enable clients to tokenize traditional assets and eliminate 50-70 percent of administrative overhead. Furthermore, the company's automated compliance engine allows for minimal fees and speed comparable to modern centralized applications. Codono's white label blockchain solution has several advantages. Codono's compliance infrastructure is based on cutting-edge protocols that allow institutions and businesses to conduct their business in a safe and compliant manner.
 
