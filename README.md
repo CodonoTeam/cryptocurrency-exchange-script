@@ -1,6 +1,7 @@
 ## Discover the Power of Codono's Cryptocurrency Exchange Script
 
-![Cryptocurrency Exchange Script](cryptocurrency_Exchange_script.png?raw=true "Cryptocurrency Exchange Script")
+<img src="cryptocurrency_Exchange_script.png?raw=true" alt="Cryptocurrency Exchange Script" title="Cryptocurrency Exchange Script" style="max-width:400px">
+
 
 Experience a Revolution in Crypto Trading with Codono's [Cryptocurrency Exchange Script](https://codono.com)
 
