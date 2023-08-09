@@ -2,7 +2,7 @@
 
 ![Cryptocurrency Exchange Script](cryptocurrency_Exchange_script.png?raw=true "Cryptocurrency Exchange Script")
 
-Experience a Revolution in Crypto Trading with [Codono's Cryptocurrency Exchange Script](https://codono.com)
+Experience a Revolution in Crypto Trading with Codono's [Cryptocurrency Exchange Script](https://codono.com)
 
 Unveil the Future of Crypto Trading
 
