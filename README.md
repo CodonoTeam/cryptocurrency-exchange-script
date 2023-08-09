@@ -10,7 +10,7 @@ Unveil the Future of Crypto Trading
 - **Auto Detection of Deposits:** Enjoy the seamless detection and instant crediting of deposits. Each user is assigned a unique deposit per coin, ensuring accuracy and efficiency.
 
 - **Binance Clone:** Leverage the power of Codono's Binance clone to create cryptocurrency exchanges akin to Binance, Huobi, and Coinbase. Begin your crypto exchange journey within a week.
-<img src="cryptocurrency_Exchange_script_binance_clone_codono.png?raw=true" alt="Binance clone" title="Binance clone" style="max-width:400px">
+<img src="cryptocurrency_Exchange_script_binance_clone_codono.png?raw=true" alt="Binance clone" title="Binance clone" style="width:300px">
 
 ![Binance clone](cryptocurrency_Exchange_script_binance_clone_codono.png?raw=true "Binance clone")
 
