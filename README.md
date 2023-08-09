@@ -200,5 +200,6 @@ To build your exchange website, download the Codono kit for free. Customize them
 
 [Get Codono Kit](https://codono.com/download/)
 ---
-[![Telegram](https://cdn.jsdelivr.net/npm/simple-icons@4.19.0/icons/telegram.svg | width=32)](https://t.me/ctoninja)
-[![Website](https://cdn.jsdelivr.net/npm/simple-icons@4.19.0/icons/globe.svg | width=32)](https://codono.com)
+<a href="https://t.me/ctoninja"><img src="https://cdn.jsdelivr.net/npm/simple-icons@4.19.0/icons/telegram.svg" alt="Telegram" width="32px"></a>
+<a href="https://codono.com"><img src="https://cdn.jsdelivr.net/npm/simple-icons@4.19.0/icons/globe.svg" alt="Website" width="32px"></a>
+
