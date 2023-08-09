@@ -153,3 +153,15 @@ You would need to setup coin nodes or thirdparty services to setup wallet system
 Congratulations! Your Codono exchange is now set up and ready to go. Test various functionalities, including user registration, trading, deposits, withdrawals, and admin features, to ensure everything works as expected.
 
 Please remember to keep your server and Codono installation secure by regularly updating software, using strong passwords, and following other security best practices.
+### Additional Tutorials:
+
+- [Binance Liquidity Setup Tutorial](Binance_Liquidity.txt)
+- [Socket Setup for Huobi](socket_for_huobi.txt)
+- [Emptying Tables for Fresh System](tables_to_empty_for_fresh_system.txt)
+- [ShuftiPro Setup Tutorial](ShuftiPro.txt)
+- [Binance Client Info Setup](bnb_client_info.txt)
+- [Crypto APIs Setup Tutorial](cryptoapis_setup.txt)
+- [Tron Setup Tutorial](tron_setup.txt)
+- [DEX Setup Tutorial](dex_setup.txt)
+- [XRP Setup Tutorial](xrp_setup.txt)
+- [Google Login Setup Tutorial](google_login_setup.txt)
