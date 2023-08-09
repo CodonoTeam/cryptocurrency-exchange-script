@@ -12,8 +12,6 @@ Unveil the Future of Crypto Trading
 - **Binance Clone:** Leverage the power of Codono's Binance clone to create cryptocurrency exchanges akin to Binance, Huobi, and Coinbase. Begin your crypto exchange journey within a week.
 <img src="cryptocurrency_Exchange_script_binance_clone_codono.png?raw=true" alt="Binance clone" title="Binance clone" style="width:300px">
 
-![Binance clone](cryptocurrency_Exchange_script_binance_clone_codono.png?raw=true "Binance clone")
-
 Explore the Universe of [Binance Clone](https://codono.com)
 
 - **Asset Trading Solution:** Trade a diverse array of assets including cryptocurrencies, tokens, and fiats. Benefit from market-making and liquidity options for enhanced trading experiences.
