@@ -40,8 +40,20 @@ In this step, review and adjust other settings in the `pure_config.php` file bas
 - `DEBUG_WINDOW`: Set this to `0` for production mode. If set to `1`, it shows a debug window on every page.
 - `KYC_OPTIONAL`: Set this to `0` to turn on KYC on user signup and make it optional. If set to `1`, KYC will be optional during signup.
 - `ENFORCE_KYC`: Set this to `0` to allow users without KYC to withdraw and trade. If set to `1`, only users with KYC will be able to withdraw and trade.
+- `ADMIN_KEY`: Set this to alphanumeric minimum 16-32 char for keeping your admin URL secure
+- `CRON_KEY`: Set this to alphanumeric minimum 16-20 char for keeping your Cron URL secure
 
 Make sure to save the `pure_config.php` file after making the necessary changes.
+
+
+Example Admin URL after `ADMIN_KEY` is set
+```
+http://exchange.local/Admin/Login/index/securecode/securekey
+```
+Complete Cronlist here 
+```
+http://exchange.local/Admin/Login/index/securecode/securekey
+```
 
 **Note:** Review all other settings in the file carefully and update them based on your specific requirements.
 
@@ -120,16 +132,23 @@ const DB_PORT = '3306';
 ```
 
 3. Save the changes to `pure_config.php`.
+   
+4. Import codonoexchange_x.sql to your_database_name. 
+### Step 9: Connect Required Nodes
 
-### Step 9: Perform the Installation
+You would need to setup coin nodes or thirdparty services to setup wallet system on exchange . Please refer to Docuemntation for Coin nodes setup.
+
+### Step 10: Perform the Installation
 
 1. Open your web browser and navigate to the URL where you placed the Codono files.
 
-2. The installation page should appear. Follow the on-screen instructions to complete the installation. You will need to enter your database connection details, set up the admin account, and configure other site settings.
+2. Goto exchange.local/install_check.php to see if all requirements are met.
 
-3. Once the installation is complete, remove the `install` directory from the Codono files to prevent unauthorized access to the installer.
+3. Once the installation is complete, remove the `install_check.php` file.
+4. Setup all crons by visiting this link http://exchange.local/Cronlist/index/securecode/cronkey
+5. You can now visit exchange.local
 
-### Step 10: Test Your Exchange
+### Step 11: Test Your Exchange
 
 Congratulations! Your Codono exchange is now set up and ready to go. Test various functionalities, including user registration, trading, deposits, withdrawals, and admin features, to ensure everything works as expected.
 
