@@ -155,13 +155,13 @@ Congratulations! Your Codono exchange is now set up and ready to go. Test variou
 Please remember to keep your server and Codono installation secure by regularly updating software, using strong passwords, and following other security best practices.
 ### Additional Tutorials:
 
-- [Binance Liquidity Setup Tutorial](Binance_Liquidity.txt)
-- [Socket Setup for Huobi](socket_for_huobi.txt)
+- [Binance Liquidity Setup Tutorial](binance-cross-trading-setup.md)
+- [Socket Setup for Huobi](WebSocketConfigLiquidity.md)
 - [Emptying Tables for Fresh System](tables_to_empty_for_fresh_system.txt)
-- [ShuftiPro Setup Tutorial](ShuftiPro.txt)
-- [Binance Client Info Setup](bnb_client_info.txt)
-- [Crypto APIs Setup Tutorial](cryptoapis_setup.txt)
-- [Tron Setup Tutorial](tron_setup.txt)
-- [DEX Setup Tutorial](dex_setup.txt)
-- [XRP Setup Tutorial](xrp_setup.txt)
-- [Google Login Setup Tutorial](google_login_setup.txt)
+- [ShuftiPro Setup Tutorial](shuftipro-setup-requirements.md)
+- [Binance Client Info Setup](bnb_client_info.md)
+- [Crypto APIs Setup Tutorial](cryptoapis.io.setup.md)
+- [Tron Setup Tutorial](tron_setup.md)
+- [DEX Setup Tutorial](php-dex-decentalized-exchange.md)
+- [XRP Setup Tutorial](xrp-setup-crypto-exchange.md)
+- [Google Login Setup Tutorial](google-login-setup.md)
