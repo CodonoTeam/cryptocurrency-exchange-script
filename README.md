@@ -199,3 +199,6 @@ Aspiring startups and established businesses find Codono an ideal white-label cr
 To build your exchange website, download the Codono kit for free. Customize themes and graphics to match your brand's identity. Engage with our team through Telegram or live chat to explore the full range of features and discuss any queries.
 
 [Get Codono Kit](https://codono.com/download/)
+
+[![Telegram](https://cdn.jsdelivr.net/npm/simple-icons@4.19.0/icons/telegram.svg)](https://t.me/ctoninja)
+[![Website](https://cdn.jsdelivr.net/npm/simple-icons@4.19.0/icons/globe.svg)](https://codono.com)
