@@ -1,3 +1,26 @@
+# Liquidity Bot in the Codono Script
+
+In the Codono script, the "Liquidity Bot" refers to a software component designed to provide liquidity in cryptocurrency trading. Liquidity refers to the ease with which an asset can be bought or sold without significantly affecting its price. The Liquidity Bot's primary goal is to ensure there is enough supply and demand for a particular cryptocurrency trading pair, minimizing slippage and enhancing trading efficiency.
+
+## How the Liquidity Bot Works
+
+- **Order Book Monitoring:** The Liquidity Bot constantly monitors the order books of various market pairs.
+
+- **Orderbook Creation:** Periodically, the Liquidity Bot identifies trading pairs and automatically places both buy and sell orders at prices close to the current market price. These orders are usually smaller than typical market orders and have a markup commission set in the admin area.
+
+- **Market Maker Strategy:** The bot follows a market maker strategy. It aims to profit from the spread between buy and sell orders. By placing buy orders slightly below the market price and sell orders slightly above the market price, the bot provides liquidity to traders who wish to execute trades quickly.
+
+- **Order Adjustment:** As the market price fluctuates, the Liquidity Bot adjusts its orders to maintain a competitive spread and adapt to changing market conditions.
+
+- **Risk Management:** The bot includes risk management mechanisms to prevent large losses. For instance, it may set maximum order sizes.
+
+- **Cross Trading:** The bot may also cross trade and match on Binance Exchange for the same orders that got executed on your exchange.
+
+By providing liquidity, the Liquidity Bot helps create a more efficient trading environment, attracting more traders and investors to the platform. This, in turn, can enhance the overall trading experience and potentially increase trading volumes on the Codono platform.
+
+
+# Bot Setup on Codono System
+
 ## Step 1: Configure 2 Spot API Keys in `other_config.php`
 
 Open the `other_config.php` file in a text editor.
