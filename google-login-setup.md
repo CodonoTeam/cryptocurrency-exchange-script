@@ -6,7 +6,7 @@ In this tutorial, we'll show you how to get Google Client ID and Client Secret i
 
 **Note:** To generate Google Client ID and Client Secret, you must be signed into a Google account.
 
-1. Go to the Google Developers Console.
+1. Go to the Google Developers Console. [https://console.cloud.google.com/]
 
 2. Click on "Select a project" ➝ "New Project" ➝ click the "Create" button.
 
