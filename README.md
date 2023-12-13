@@ -157,6 +157,14 @@ Here's a list of additional wallet features and integrated nodes, along with sup
 
 These additional wallet features and integrated nodes expand the range of cryptocurrencies and payment methods your platform can support, providing users with a diverse and comprehensive trading and payment experience.
 We can add any Crypto method or Fiat gateway to Exchange software
+## [Crypto Node Setup Services](https://codono.com)
+Connect your Cryptocurrency Exchange or Wallet to your own Private Node with full security and exclusive access.
+
+- [BNB Node Setup](node-setup/bnb.md)
+- [ETH Node Setup](node-setup/eth.md)
+- [BTC Node Setup](node-setup/btc.md)
+- [KLAY Node Setup](node-setup/klay.md)
+- [PolkaDot Substrate Node Setup](node-setup/polkadot-substrate.md)
 
 ## Expanding Possibilities with Integrated Wallet Features and Nodes
 
