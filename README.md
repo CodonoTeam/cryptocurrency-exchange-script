@@ -1,6 +1,6 @@
 ## Discover the Power of Codono's Cryptocurrency Exchange Script
 
-<img src="crypto-exchange.webp?raw=true" alt="Cryptocurrency Exchange Script" title="Cryptocurrency Exchange Script" style="max-width:400px">
+<img src="assets/crypto-exchange.webp?raw=true" alt="Cryptocurrency Exchange Script" title="Cryptocurrency Exchange Script" style="max-width:400px">
 
 
 Experience a Revolution in Crypto Trading with Codono's [Cryptocurrency Exchange Script](https://codono.com)
@@ -10,7 +10,7 @@ Unveil the Future of Crypto Trading
 - **Auto Detection of Deposits:** Enjoy the seamless detection and instant crediting of deposits. Each user is assigned a unique deposit per coin, ensuring accuracy and efficiency.
 
 - **Binance Clone:** Leverage the power of Codono's Binance clone to create cryptocurrency exchanges akin to Binance, Huobi, and Coinbase. Begin your crypto exchange journey within a week.
-<img src="cryptocurrency_Exchange_script_binance_clone_codono.png?raw=true" alt="Binance clone" title="Binance clone" style="width:300px">
+<img src="assets/cryptocurrency_Exchange_script_binance_clone_codono.png?raw=true" alt="Binance clone" title="Binance clone" style="width:300px">
 
 Explore the Universe of [Binance Clone](https://codono.com)
 
@@ -22,7 +22,7 @@ Explore the Universe of [Binance Clone](https://codono.com)
 
 Embark on Your Journey with [Cryptocurrency Nodes Setup Guide](https://github.com/turndealer/cryoto-nodes)
 
-![Cryptocurrency Exchange Software](Download-Cryptocurrency-Exchange-Script-Cryptocurrency-Exchange-Software.png?raw=true "Cryptocurrency Exchange Software")
+![Cryptocurrency Exchange Software](assets/Download-Cryptocurrency-Exchange-Script-Cryptocurrency-Exchange-Software.png?raw=true "Cryptocurrency Exchange Software")
 
 Elevate Your Trading with [Cryptocurrency Exchange Software](https://codono.com/download/)
 
@@ -61,7 +61,7 @@ For more information, visit [Codono's official website](https://codono.com).
 Discover your potential, redefine possibilities – Codono's White Label Blockchain Solution.
 
 
-![Crypto Deposit Withdrawal](deposit_withdrawal_troubleshooting_for_Evm.png?raw=true "Crypto Deposit Withdrawal")
+![Crypto Deposit Withdrawal](assets/deposit_withdrawal_troubleshooting_for_Evm.png?raw=true "Crypto Deposit Withdrawal")
 ## Crypto Exchange Script: Empowering Your Exchange Platform
 
 The Crypto Exchange Script is a versatile solution for building a comprehensive cryptocurrency exchange platform. It functions as a dynamic software development kit that integrates both public and private libraries, allowing for the seamless development of a cryptocurrency exchange. Built on blockchain technology and offered as an open-source platform, the Crypto Exchange Script empowers businesses to create their own private and white-label exchange solutions that cater to their specific customer base.
