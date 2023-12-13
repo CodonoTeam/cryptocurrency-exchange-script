@@ -29,8 +29,24 @@ Elevate Your Trading with [Cryptocurrency Exchange Software](https://codono.com/
 - **6 Years of Expertise:** Codono's Binance clone has evolved over 6 years, making it suitable for businesses of all scales, from small startups to enterprise giants.
 
 - **Web and Mobile App Deployment:** Access the world of crypto trading seamlessly through web and mobile applications, ensuring a user-friendly experience.
-
-
+### Documentation for cryptocurrency exchange
+- [How Does Codono Work](docs/how-does-codono-work.md)
+- [WebSocketConfigLiquidity](docs/WebSocketConfigLiquidity.md)
+- [PHP Dex Decentralized Exchange](docs/php-dex-decentalized-exchange.md)
+- [BEP20 Setup](docs/bep20-setup.md)
+- [Security Tips](docs/security-tips.md)
+- [Binance Cross Trading Setup](docs/binance-cross-trading-setup.md)
+- [Shuftipro Setup Requirements](docs/shuftipro-setup-requirements.md)
+- [Blockgum Integration](docs/blockgum-integration.md)
+- [Substrate Node Solution](docs/substrate-node-solution.md)
+- [BNB Client Info](docs/bnb_client_info.md)
+- [Things to Avoid](docs/things-to-avoid.md)
+- [Cryptoapis.io Setup](docs/cryptoapis.io.setup.md)
+- [TRC20 Setup](docs/trc20-setup.md)
+- [Exchange Setup](docs/exchange-setup.md)
+- [Tron Setup](docs/tron_setup.md)
+- [Google Login Setup](docs/google-login-setup.md)
+- [XRP Setup for Crypto Exchange](docs/xrp-setup-crypto-exchange.md)
 
 ## White Label Blockchain Solution: Elevate Your Crypto Business with Codono
 
@@ -157,14 +173,6 @@ Here's a list of additional wallet features and integrated nodes, along with sup
 
 These additional wallet features and integrated nodes expand the range of cryptocurrencies and payment methods your platform can support, providing users with a diverse and comprehensive trading and payment experience.
 We can add any Crypto method or Fiat gateway to Exchange software
-## [Crypto Node Setup Services](https://codono.com)
-Connect your Cryptocurrency Exchange or Wallet to your own Private Node with full security and exclusive access.
-
-- [BNB Node Setup](node-setup/bnb.md)
-- [ETH Node Setup](node-setup/eth.md)
-- [BTC Node Setup](node-setup/btc.md)
-- [KLAY Node Setup](node-setup/klay.md)
-- [PolkaDot Substrate Node Setup](node-setup/polkadot-substrate.md)
 
 ## Expanding Possibilities with Integrated Wallet Features and Nodes
 
