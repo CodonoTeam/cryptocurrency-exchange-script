@@ -9,7 +9,7 @@ This guide walks you through setting up Redis with OneInStack on Codono.com. Onc
 1. Open the Redis configuration file using a text editor (such as nano):
 
     ```bash
-    sudo nano /usr/local/etc/redis.conf
+    sudo nano sudo nano /usr/local/redis/etc/redis.conf
     ```
 
 2. Locate the following line in the file:
