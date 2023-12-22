@@ -1,5 +1,3 @@
-
-```markdown
 # MySQL Setup with OneInStack on Codono.com
 
 This guide walks you through setting up MySQL with OneInStack on Codono.com. Once the setup is complete, you'll need to securely store a MySQL password for future use.
@@ -55,5 +53,3 @@ sudo systemctl status mysql
 For more detailed guidance and tips, visit [Codono.com](https://codono.com).
 
 ---
-```
-
