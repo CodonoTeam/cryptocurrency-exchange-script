@@ -64,6 +64,7 @@ $iconvExtension = extension_loaded('iconv');
 $libsodium=extension_loaded('iconv');
 $exec=function_exists('exec');
 $stream_socket_server=function_exists('stream_socket_server');
+$gmpExtension = extension_loaded('gmp');
 //$mcypt=function_exists('mcrypt_create_iv');
 $extensionRows = [
 	'exec'=>$exec,
@@ -85,6 +86,7 @@ $extensionRows = [
 	'libsodium'=>$libsodium,
 	'stream_socket_server'=>$stream_socket_server,
 //	'mcrypt'=>$mcrypt,
+	'gmp [Required For Tron Network]' => $gmpExtension
 ];
 $isCross = $phpVersionCould && $storageDirWriteable && $bootstrapDirWriteable && $envWriteable;
 if ($isCross) {
