@@ -38,7 +38,7 @@ location ~/wsocket(.*)$ {
     proxy_set_header X-Real-IP  $remote_addr;
     proxy_set_header X-Forwarded-For $remote_addr;
     proxy_set_header Host $host;
-    proxy_pass http://localhost:7272;
+    proxy_pass http://127.0.0.1:7272;
 }
 ```
 
@@ -66,8 +66,8 @@ sudo nano socketbot.conf
 
 ```ini
 [program:socketbot]
-directory=/var/www/vhosts/yourdomain.com/httpdocs  ; Replace with your Codono installation directory
-command=/opt/plesk/php/7.4/bin/php socketbot.php start
+directory=/data/wwwroot/codebase  ; Replace with your Codono installation directory
+command=/usr/local/php/bin/php socketbot.php start
 autostart=true
 autorestart=true
 stderr_logfile=/var/log/supervisor/socketbot.err.log
@@ -95,6 +95,6 @@ supervisorctl
 tail -f /var/log/supervisor/socketbot.out.log
 ```
 
-Please note that the paths and commands may vary depending on your server environment and Codono installation. Make sure to replace `/var/www/vhosts/yourdomain.com/httpdocs` with the actual path to your Codono installation and `/opt/plesk/php/7.4/bin/php` with the path to your PHP executable.
+Please note that the paths and commands may vary depending on your server environment and Codono installation. Make sure to replace `/data/wwwroot/codebase` with the actual path to your Codono installation and `/usr/local/php/bin/php` with the path to your PHP executable. However its correct if you are following our guide using oneinstack.
 
 Always ensure that you have proper permissions and access rights while making changes to the server configuration. If you are not familiar with these configurations, it's best to consult with a system administrator or expert.
