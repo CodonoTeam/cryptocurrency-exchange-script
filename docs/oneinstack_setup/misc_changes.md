@@ -44,6 +44,14 @@ Replace with
 ```
 const PHP_PATH = '/usr/local/php/bin/php';
 ```
+## Step 4: Restart
+
+
+Now need to restart PHP-FPM
+
+```
+service php-fpm restart
+```
 ## Important Notes
 
 - ** Visit install_check.php and find if any deficiencies
