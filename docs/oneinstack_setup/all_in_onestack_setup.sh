@@ -1,11 +1,14 @@
 #!/bin/bash
 
 # Step 0: Create random credentials
-
-HTACCESS_USERNAME=$(generate_password 16)
-HTACCESS_PASSWORD=$(generate_password 32)
-REDIS_PASSWORD=$(generate_password 40)
-MYSQL_NEW_ROOT_PASSWORD=$(generate_password 40)
+generate_password() {
+    local length=$1
+    tr -dc A-Za-z0-9 </dev/urandom | head -c ${length} ; echo ''
+}
+HTACCESS_USERNAME=htu_$(generate_password 16)
+HTACCESS_PASSWORD=htp_$(generate_password 32)
+REDIS_PASSWORD=rp_$(generate_password 40)
+MYSQL_NEW_ROOT_PASSWORD=mp_$(generate_password 40)
 
 # Step 1: Install OneInStack
 cd /opt/ && wget -c http://mirrors.oneinstack.com/oneinstack-full.tar.gz && tar xzf oneinstack-full.tar.gz && ./oneinstack/install.sh --nginx_option 1 --php_option 9 --phpcache_option 1 --php_extensions fileinfo,redis,swoole --phpmyadmin --db_option 5 --dbinstallmethod 1 --dbrootpwd $MYSQL_NEW_ROOT_PASSWORD --redis --reboot
