@@ -5,10 +5,30 @@ generate_password() {
     local length=$1
     tr -dc A-Za-z0-9 </dev/urandom | head -c ${length} ; echo ''
 }
-HTACCESS_USERNAME=htu_$(generate_password 16)
-HTACCESS_PASSWORD=htp_$(generate_password 32)
-REDIS_PASSWORD=rp_$(generate_password 40)
-MYSQL_NEW_ROOT_PASSWORD=mp_$(generate_password 40)
+generate_2fa_secret_key() {
+    # Generate 10 random bytes
+    local random_bytes=$(openssl rand 10)
+    # Directly encode these bytes into base32
+    local secret_key=$(echo -n "$random_bytes" | base32 | tr -d '=')
+    echo "$secret_key"
+}
+
+# Generating credentials with prefixes
+HTACCESS_USERNAME="HU_$(generate_password 16)"
+HTACCESS_PASSWORD="HP_$(generate_password 32)"
+REDIS_PASSWORD="RP_$(generate_password 40)"
+MYSQL_NEW_ROOT_PASSWORD="MP_$(generate_password 40)"
+
+# Others required for 2nd step
+DB_NAME="DBN_$(generate_password 16)"
+ADMIN_KEY="AK_$(generate_password 42)"
+CRON_KEY="CK_$(generate_password 40)"
+
+# to db update later
+ADMIN_USER="AU_$(generate_password 20)"
+ADMIN_PASS="AP_$(generate_password 40)"
+TWO_FA_SECRET_KEY=$(generate_2fa_secret_key)
+
 
 # Step 1: Install OneInStack
 cd /opt/ && wget -c http://mirrors.oneinstack.com/oneinstack-full.tar.gz && tar xzf oneinstack-full.tar.gz && ./oneinstack/install.sh --nginx_option 1 --php_option 9 --phpcache_option 1 --php_extensions fileinfo,redis,swoole --phpmyadmin --db_option 5 --dbinstallmethod 1 --dbrootpwd $MYSQL_NEW_ROOT_PASSWORD --redis --reboot
@@ -63,3 +83,19 @@ echo "MySQL Root Password: $MYSQL_NEW_ROOT_PASSWORD"
 echo "Redis Password: $REDIS_PASSWORD"
 echo ".htaccess Username: $HTACCESS_USERNAME"
 echo ".htaccess Password: $HTACCESS_PASSWORD"
+
+# Save credentials to a YAML file
+cat <<EOF >credentials.yml
+HTACCESS_USERNAME: $HTACCESS_USERNAME
+HTACCESS_PASSWORD: $HTACCESS_PASSWORD
+REDIS_PASSWORD: $REDIS_PASSWORD
+MYSQL_NEW_ROOT_PASSWORD: $MYSQL_NEW_ROOT_PASSWORD
+DB_NAME: $DB_NAME
+ADMIN_KEY: $ADMIN_KEY
+CRON_KEY: $CRON_KEY
+ADMIN_USER: $ADMIN_USER
+ADMIN_PASS: $ADMIN_PASS
+TWO_FA_SECRET_KEY: $TWO_FA_SECRET_KEY
+EOF
+
+echo "Credentials have been saved to credentials.yml too"
