@@ -29,9 +29,24 @@ ADMIN_USER="AU_$(generate_password 20)"
 ADMIN_PASS="AP_$(generate_password 40)"
 TWO_FA_SECRET_KEY=$(generate_2fa_secret_key)
 
+cd /opt/
+# Save credentials to a YAML file
+cat <<EOF >credentials.yml
+HTACCESS_USERNAME: $HTACCESS_USERNAME
+HTACCESS_PASSWORD: $HTACCESS_PASSWORD
+REDIS_PASSWORD: $REDIS_PASSWORD
+MYSQL_NEW_ROOT_PASSWORD: $MYSQL_NEW_ROOT_PASSWORD
+DB_NAME: $DB_NAME
+ADMIN_KEY: $ADMIN_KEY
+CRON_KEY: $CRON_KEY
+ADMIN_USER: $ADMIN_USER
+ADMIN_PASS: $ADMIN_PASS
+TWO_FA_SECRET_KEY: $TWO_FA_SECRET_KEY
+EOF
+echo "Credentials have been saved to credentials.yml too"
 
 # Step 1: Install OneInStack
-cd /opt/ && wget -c http://mirrors.oneinstack.com/oneinstack-full.tar.gz && tar xzf oneinstack-full.tar.gz && ./oneinstack/install.sh --nginx_option 1 --php_option 9 --phpcache_option 1 --php_extensions fileinfo,redis,swoole --phpmyadmin --db_option 5 --dbinstallmethod 1 --dbrootpwd $MYSQL_NEW_ROOT_PASSWORD --redis --reboot
+cd /opt/ && wget -c http://mirrors.oneinstack.com/oneinstack-full.tar.gz && tar xzf oneinstack-full.tar.gz && ./oneinstack/install.sh --nginx_option 1 --apache  --apache_mpm_option 1 --apache_mode_option 1 --php_option 9 --phpcache_option 1 --php_extensions fileinfo,redis,swoole --phpmyadmin  --db_option 5 --dbinstallmethod 1 --dbrootpwd $MYSQL_NEW_ROOT_PASSWORD --redis  --memcached 
 
 # Step 2: Modify php.ini
 sed -i '/disable_functions/s/exec,//' /usr/local/php/etc/php.ini
@@ -55,7 +70,7 @@ echo "GMP extension installation is complete."
 cd /opt/oneinstack
 sed -i 's/bind-address = 0.0.0.0/bind-address = 127.0.0.1/' /etc/my.cnf
 systemctl restart mysql
-systemctl status mysql
+
 
 # Step 5: Setup .htaccess authentication
 HTPASSWD_DIR="/usr/local/apache"
@@ -83,19 +98,3 @@ echo "MySQL Root Password: $MYSQL_NEW_ROOT_PASSWORD"
 echo "Redis Password: $REDIS_PASSWORD"
 echo ".htaccess Username: $HTACCESS_USERNAME"
 echo ".htaccess Password: $HTACCESS_PASSWORD"
-
-# Save credentials to a YAML file
-cat <<EOF >credentials.yml
-HTACCESS_USERNAME: $HTACCESS_USERNAME
-HTACCESS_PASSWORD: $HTACCESS_PASSWORD
-REDIS_PASSWORD: $REDIS_PASSWORD
-MYSQL_NEW_ROOT_PASSWORD: $MYSQL_NEW_ROOT_PASSWORD
-DB_NAME: $DB_NAME
-ADMIN_KEY: $ADMIN_KEY
-CRON_KEY: $CRON_KEY
-ADMIN_USER: $ADMIN_USER
-ADMIN_PASS: $ADMIN_PASS
-TWO_FA_SECRET_KEY: $TWO_FA_SECRET_KEY
-EOF
-
-echo "Credentials have been saved to credentials.yml too"
