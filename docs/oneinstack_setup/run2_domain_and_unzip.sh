@@ -34,7 +34,6 @@ unzip /data/wwwroot/codono_unpack.zip -d /data/wwwroot/ || { echo "Failed to unz
 
 # Add the domain to /opt/oneinstack/vhost.sh script
 echo "Adding domain to vhost.sh..."
-# Starting the vhosts.sh script with the --add flag and automating inputs
 /opt/oneinstack/vhost.sh --add <<EOF
 1
 $domain
@@ -45,8 +44,14 @@ y
 y
 EOF
 
+# Check if the previous command was successful
+if [ $? -ne 0 ]; then
+    echo "Failed to add domain to vhosts.sh."
+    exit 1
+fi
+
 echo "The virtual host for $domain has been configured."
- || { echo "Failed to add domain to vhosts.sh."; exit 1; }
+
 
 # Verify required directories exist before moving contents
 if [[ -d "/data/wwwroot/${domain}" && -d "/data/wwwroot/codono_unpack/codebase" && -d "/data/wwwroot/codono_unpack/webserver" ]]; then
