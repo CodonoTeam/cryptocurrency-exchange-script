@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Prompt user for domain name input
+read -p "Please input domain(example: example.com): " domain
+domain=${domain,,} # Convert domain to lowercase to avoid issues
+
+
+# Clean the input: remove https://, www, and trailing slashes
+domain=$(echo "$domain" | sed -e 's/^https:\/\///' -e 's/^www\.//' -e 's/\/$//')
+
 # Step 0: Create random credentials
 generate_password() {
     local length=$1
@@ -12,6 +20,7 @@ generate_2fa_secret_key() {
     local secret_key=$(echo -n "$random_bytes" | base32 | tr -d '=')
     echo "$secret_key"
 }
+
 
 # Generating credentials with prefixes
 HTACCESS_USERNAME="HU_$(generate_password 16)"
@@ -42,6 +51,7 @@ CRON_KEY: $CRON_KEY
 ADMIN_USER: $ADMIN_USER
 ADMIN_PASS: $ADMIN_PASS
 TWO_FA_SECRET_KEY: $TWO_FA_SECRET_KEY
+DOMAIN= $domain
 EOF
 echo "Credentials have been saved to credentials.yml too"
 
