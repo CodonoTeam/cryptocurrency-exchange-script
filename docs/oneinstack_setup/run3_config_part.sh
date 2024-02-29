@@ -29,7 +29,7 @@ else
 fi
 
 # Define the path to your PHP configuration file
-PHP_CONFIG_FILE="/data/wwwroot/${DOMAIN}/pure_config.php"
+PHP_CONFIG_FILE="/data/wwwroot/codebase/pure_config.php"
 
 # Extract values and update the pure_config.php file
 echo "Updating configuration file 'pure_config.php'..."
