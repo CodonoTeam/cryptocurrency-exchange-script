@@ -32,9 +32,21 @@ fi
 echo "Unzipping /data/wwwroot/codono_unpack.zip..."
 unzip /data/wwwroot/codono_unpack.zip -d /data/wwwroot/ || { echo "Failed to unzip file."; exit 1; }
 
-# Add the domain to /opt/oneinstack/vhosts.sh script
-echo "Adding domain to vhosts.sh..."
-/opt/oneinstack/vhosts.sh --add "${domain}" || { echo "Failed to add domain to vhosts.sh."; exit 1; }
+# Add the domain to /opt/oneinstack/vhost.sh script
+echo "Adding domain to vhost.sh..."
+# Starting the vhosts.sh script with the --add flag and automating inputs
+/opt/oneinstack/vhost.sh --add <<EOF
+1
+$domain
+
+n
+n
+y
+y
+EOF
+
+echo "The virtual host for $domain has been configured."
+ || { echo "Failed to add domain to vhosts.sh."; exit 1; }
 
 # Verify required directories exist before moving contents
 if [[ -d "/data/wwwroot/${domain}" && -d "/data/wwwroot/codono_unpack/codebase" && -d "/data/wwwroot/codono_unpack/webserver" ]]; then
