@@ -32,9 +32,10 @@ fi
 echo "Unzipping /data/wwwroot/codono_unpack.zip..."
 unzip /data/wwwroot/codono_unpack.zip -d /data/wwwroot/ || { echo "Failed to unzip file."; exit 1; }
 
-# Add the domain to /opt/oneinstack/vhost.sh script
+# Add the domain to /opt/oneinstack/vhost.sh script [ run in subshell]
 echo "Adding domain to vhost.sh..."
-/opt/oneinstack/vhost.sh --add <<EOF
+command_output=$( 
+    /opt/oneinstack/vhost.sh --add <<EOF
 1
 $domain
 
@@ -43,14 +44,20 @@ n
 y
 y
 EOF
+) 
+command_status=$?
+
+# Print the output for debugging or confirmation
+echo "$command_output"
 
 # Check if the previous command was successful
-if [ $? -ne 0 ]; then
+if [ $command_status -ne 0 ]; then
     echo "Failed to add domain to vhosts.sh."
     exit 1
+else
+    echo "The virtual host for $domain has been configured."
 fi
 
-echo "The virtual host for $domain has been configured."
 
 
 # Verify required directories exist before moving contents
