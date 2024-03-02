@@ -16,6 +16,9 @@ MYSQL_NEW_ROOT_PASSWORD=$(grep 'MYSQL_NEW_ROOT_PASSWORD:' /opt/credentials.yml |
 DB_NAME=$(grep 'DB_NAME:' /opt/credentials.yml | cut -d ' ' -f 2)
 ADMIN_KEY=$(grep 'ADMIN_KEY:' /opt/credentials.yml | cut -d ' ' -f 2)
 CRON_KEY=$(grep 'CRON_KEY:' /opt/credentials.yml | cut -d ' ' -f 2)
+# Extract the first part of the domain and capitalize it for SHORT_NAME
+SITE_NAME=$(echo "${DOMAIN%%.*}" | awk '{print toupper(substr($0,1,1)) tolower(substr($0,2))}')
+
 
 # Verify required directories exist before moving contents
 if [[ -d "/data/wwwroot/${DOMAIN}" && -d "/data/wwwroot/codono_unpack/codebase" && -d "/data/wwwroot/codono_unpack/webserver" ]]; then
@@ -27,6 +30,17 @@ else
     echo "One or more required directories do not exist."
     exit 1
 fi
+
+
+# Check if /data/wwwroot/codebase/Runtime exists, if not then create
+if [ ! -d "/data/wwwroot/codebase/Runtime" ]; then
+    echo "Creating /data/wwwroot/codebase/Runtime directory..."
+    mkdir -p /data/wwwroot/codebase/Runtime
+fi
+
+# Change ownership of the Runtime directory and Upload folder
+chown -R www:www /data/wwwroot/codebase/Runtime
+chown -R www:www /data/wwwroot/${DOMAIN}/Upload
 
 # Define the path to your PHP configuration file
 PHP_CONFIG_FILE="/data/wwwroot/codebase/pure_config.php"
@@ -43,5 +57,6 @@ sed -i "s|const PHP_PATH = 'php';|const PHP_PATH = '/usr/local/php/bin/php';|g" 
 sed -i "s|const DB_PORT = '3309';|const DB_PORT = '3306';|g" "$PHP_CONFIG_FILE"
 sed -i "s|const M_DEBUG = 1;|const M_DEBUG = 0;|g" "$PHP_CONFIG_FILE"
 sed -i "s|const REDIS_PASSWORD = 'nf4gb45g8b5489gb54g89b';|const REDIS_PASSWORD = '$REDIS_PASSWORD';|g" "$PHP_CONFIG_FILE"
+sed -i "s|const SHORT_NAME = 'Codono';|const SHORT_NAME = '$SITE_NAME';|g" "$PHP_CONFIG_FILE"
 
 echo "Configuration file 'pure_config.php' has been updated successfully. Please visit https://${DOMAIN}/install_check.php and https://${DOMAIN}/"
