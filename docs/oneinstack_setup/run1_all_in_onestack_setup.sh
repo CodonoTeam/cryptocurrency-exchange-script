@@ -51,7 +51,7 @@ CRON_KEY: $CRON_KEY
 ADMIN_USER: $ADMIN_USER
 ADMIN_PASS: $ADMIN_PASS
 TWO_FA_SECRET_KEY: $TWO_FA_SECRET_KEY
-DOMAIN= $domain
+DOMAIN: $domain
 EOF
 echo "Credentials have been saved to credentials.yml too"
 
