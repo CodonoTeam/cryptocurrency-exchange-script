@@ -15,8 +15,8 @@ fi
 
 # Check if inside a screen session. If not, start a new screen session to run this script.
 if [ -z "$STY" ]; then
-    screen -dm -S CodonoEnvSetup /bin/bash "$0"
-    echo "Started setup in a screen session named CodonoEnvSetup. You can attach to it with 'screen -r CodonoEnvSetup'."
+    screen -dm -S codono /bin/bash "$0"
+    echo "Started setup in a screen session named codono , This process can take upto 10-20 mins. You can reattach to it with 'screen -r codono'."
     exit
 fi
 
