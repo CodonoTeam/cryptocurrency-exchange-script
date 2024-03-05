@@ -1,5 +1,25 @@
 #!/bin/bash
 
+# Check if 'screen' is installed, if not then install it
+if ! command -v screen &> /dev/null; then
+    echo "'screen' is not installed. Attempting to install..."
+    # Use apt-get if you are on Debian/Ubuntu. Adjust as needed for other distros (yum, zypper, pacman, etc.)
+    sudo apt-get update && sudo apt-get install -y screen
+    if [ $? -eq 0 ]; then
+        echo "'screen' successfully installed."
+    else
+        echo "Failed to install 'screen'. Exiting."
+        exit 1
+    fi
+fi
+
+# Check if inside a screen session. If not, start a new screen session to run this script.
+if [ -z "$STY" ]; then
+    screen -dm -S CodonoEnvSetup /bin/bash "$0"
+    echo "Started setup in a screen session named CodonoEnvSetup. You can attach to it with 'screen -r CodonoEnvSetup'."
+    exit
+fi
+
 # Prompt user for domain name input
 read -p "Please input domain(example: example.com): " domain
 domain=${domain,,} # Convert domain to lowercase to avoid issues
