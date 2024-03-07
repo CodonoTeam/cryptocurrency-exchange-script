@@ -10,7 +10,7 @@ wget https://raw.githubusercontent.com/CodonoTeam/cryptocurrency-exchange-script
 wget https://raw.githubusercontent.com/CodonoTeam/cryptocurrency-exchange-script/main/docs/oneinstack_setup/run3_config_part.sh &&
 chmod +x run1_all_in_onestack_setup.sh &&
 chmod +x run2_domain_and_unzip.sh &&
-chmod +x run3_config_part.sh &&
+chmod +x run3_config_part.sh
 ```
 
 Step 3.
