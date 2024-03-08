@@ -59,4 +59,7 @@ sed -i "s|const M_DEBUG = 1;|const M_DEBUG = 0;|g" "$PHP_CONFIG_FILE"
 sed -i "s|const REDIS_PASSWORD = 'nf4gb45g8b5489gb54g89b';|const REDIS_PASSWORD = '$REDIS_PASSWORD';|g" "$PHP_CONFIG_FILE"
 sed -i "s|const SHORT_NAME = 'Codono';|const SHORT_NAME = '$SITE_NAME';|g" "$PHP_CONFIG_FILE"
 
+# put .htaccess in its place 
+mv /data/wwwroot/${DOMAIN}/example.htaccess /data/wwwroot/${DOMAIN}/.htaccess
+
 echo "Configuration file 'pure_config.php' has been updated successfully. You can now run run4_db_create_and_import.sh for db creation and sql import"
