@@ -1,3 +1,4 @@
+
 ## Discover the Power of Codono's Cryptocurrency Exchange Script
 
 <img src="assets/crypto-exchange.webp?raw=true" alt="Cryptocurrency Exchange Script" title="Cryptocurrency Exchange Script" style="max-width:400px">
@@ -29,7 +30,9 @@ Elevate Your Trading with [Cryptocurrency Exchange Software](https://codono.com/
 - **6 Years of Expertise:** Codono's Binance clone has evolved over 6 years, making it suitable for businesses of all scales, from small startups to enterprise giants.
 
 - **Web and Mobile App Deployment:** Access the world of crypto trading seamlessly through web and mobile applications, ensuring a user-friendly experience.
+
 ### Documentation for cryptocurrency exchange
+- [Codono Setup fully automatic method](docs/oneinstack_setup/README.md)
 - [How Does Codono Work](docs/how-does-codono-work.md)
 - [WebSocketConfigLiquidity](docs/WebSocketConfigLiquidity.md)
 - [PHP Dex Decentralized Exchange](docs/php-dex-decentalized-exchange.md)
@@ -43,7 +46,7 @@ Elevate Your Trading with [Cryptocurrency Exchange Software](https://codono.com/
 - [Things to Avoid](docs/things-to-avoid.md)
 - [Cryptoapis.io Setup](docs/cryptoapis.io.setup.md)
 - [TRC20 Setup](docs/trc20-setup.md)
-- [Exchange Setup](docs/exchange-setup.md)
+- [Exchange Setup Manually](docs/exchange-setup.md)
 - [Tron Setup](docs/tron_setup.md)
 - [Google Login Setup](docs/google-login-setup.md)
 - [XRP Setup for Crypto Exchange](docs/xrp-setup-crypto-exchange.md)
