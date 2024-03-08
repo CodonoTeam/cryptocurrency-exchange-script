@@ -45,7 +45,7 @@ generate_2fa_secret_key() {
 # Generating credentials with prefixes
 HTACCESS_USERNAME="HU_$(generate_password 16)"
 HTACCESS_PASSWORD="HP_$(generate_password 32)"
-REDIS_PASSWORD="RP_$(generate_password 40)"
+REDIS_PASSWORD="$(generate_password 16)"
 MYSQL_NEW_ROOT_PASSWORD="MP_$(generate_password 40)"
 
 # Others required for 2nd step
