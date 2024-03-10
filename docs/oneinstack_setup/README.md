@@ -14,7 +14,7 @@ chmod +x run1_all_in_onestack_setup.sh &&
 chmod +x run2_domain_and_unzip.sh &&
 chmod +x run3_config_part.sh &&
 chmod +x run4_db_create_and_import.sh &&
-chmod +x run5_websocket.sh &&
+chmod +x run5_websocket.sh
 ```
 
 Step 3.
