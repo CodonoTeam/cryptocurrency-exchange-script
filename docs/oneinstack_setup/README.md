@@ -18,7 +18,7 @@ chmod +x run3_config_part.sh &&
 chmod +x run4_db_create_and_import.sh &&
 chmod +x run5_websocket.sh &&
 chmod +x run6_cron_setup.sh &&
-chmid +x run7_show_admin_login.sh
+chmod +x run7_show_admin_login.sh
 ```
 
 Step 3.
