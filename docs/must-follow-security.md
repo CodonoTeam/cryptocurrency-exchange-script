@@ -33,4 +33,8 @@ To ensure the highest level of security for the Codono Exchange platform, it is 
 - **Action:** Always conceal your exchange's IP address behind Cloudflare's proxy services.
 - **Rationale:** Using Cloudflare to hide the real IP address of your exchange server can protect against DDoS attacks. Cloudflare's proxy service acts as a buffer, absorbing and filtering malicious traffic before it can reach your server.
 
+## 7. Securing the Code Layer
+
+- **Action:** Add the /data/wwwroot/codebase directory to a private Git repository to enable version control and collaboration while securing your code. Ensure pure_config.php, other_config.php, and any runtime folders are added to .gitignore to prevent sensitive configuration data from being exposed.
+- **Rationale:** Protecting the source code is crucial for maintaining the integrity and security of your exchange.
 By adhering to these security practices, you can significantly enhance the protection of your Codono Exchange platform against a wide array of cyber threats. Regular audits and updates to your security measures are recommended to adapt to evolving security challenges.
