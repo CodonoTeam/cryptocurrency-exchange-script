@@ -54,7 +54,7 @@ ADMIN_KEY="AK_$(generate_password 42)"
 CRON_KEY="CK_$(generate_password 40)"
 
 # to db update later
-ADMIN_USER="AU_$(generate_password 20)"
+ADMIN_USER="AU_$(generate_password 11)"
 ADMIN_PASS="AP_$(generate_password 40)"
 TWO_FA_SECRET_KEY=$(generate_2fa_secret_key)
 
