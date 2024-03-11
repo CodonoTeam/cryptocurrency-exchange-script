@@ -10,11 +10,13 @@ wget https://raw.githubusercontent.com/CodonoTeam/cryptocurrency-exchange-script
 wget https://raw.githubusercontent.com/CodonoTeam/cryptocurrency-exchange-script/main/docs/oneinstack_setup/run3_config_part.sh &&
 wget https://raw.githubusercontent.com/CodonoTeam/cryptocurrency-exchange-script/main/docs/oneinstack_setup/run4_db_create_and_import.sh &&
 wget https://raw.githubusercontent.com/CodonoTeam/cryptocurrency-exchange-script/main/docs/oneinstack_setup/run5_websocket.sh &&
+wget https://raw.githubusercontent.com/CodonoTeam/cryptocurrency-exchange-script/main/docs/oneinstack_setup/run6_cron_setup.sh &&
 chmod +x run1_all_in_onestack_setup.sh &&
 chmod +x run2_domain_and_unzip.sh &&
 chmod +x run3_config_part.sh &&
 chmod +x run4_db_create_and_import.sh &&
-chmod +x run5_websocket.sh
+chmod +x run5_websocket.sh &&
+chmod +x run6_cron_setup.sh &&
 ```
 
 Step 3.
@@ -52,4 +54,11 @@ Run to start websocket for Liquidity markets
 ```
 cd /opt/
 ./run5_websocket.sh
+```
+
+Step 7.
+Run to setup crons with www user in crontab . We suggest double checking crons.
+```
+cd /opt/
+./run6_cron_setup.sh.sh
 ```
