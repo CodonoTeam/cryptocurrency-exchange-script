@@ -21,7 +21,7 @@ Explore the Universe of [Binance Clone](https://codono.com)
 
 - **Wide Token Compatibility:** Enjoy compatibility with numerous coins and tokens, from Bitcoin (BTC), Litecoin (LTC), Dogecoin (DOGE), Tron [TRC10+TRC20]*, Ethereum based tokens [ETH-ERC20, BNB-BEP20, FTM, SOL, Private Networks], XRP, XMR, Waves, Coinpayments, and more.
 
-Embark on Your Journey with [Cryptocurrency Nodes Setup Guide](https://github.com/turndealer/cryoto-nodes)
+[Cryptocurrency Nodes Setup Guide](node-setup/) for codono
 
 ![Cryptocurrency Exchange Software](assets/Download-Cryptocurrency-Exchange-Script-Cryptocurrency-Exchange-Software.png?raw=true "Cryptocurrency Exchange Software")
 
