@@ -120,7 +120,8 @@ service httpd restart
 
 # Step 6: Configure Redis
 
-sed -i "s/# requirepass foobar/requirepass $REDIS_PASSWORD/" /usr/local/redis/etc/redis.conf
+sed -i "s/^# requirepass foobar/requirepass $REDIS_PASSWORD/" /usr/local/redis/etc/redis.conf
+
 service redis-server restart
 
 # Print credentials
