@@ -5,7 +5,8 @@ This guide outlines the steps required to process withdrawals using Blockgum in 
 ## Step 1: Configuration Check
 
 - **Cross Check**: First, ensure that Blockgum is configured correctly in the **Admin/options** area of Codono.
-- **Coin Configuration**: Navigate to `Config/coin` and check that coins like BNB and ETH have their main address configured correctly.
+- **Coin Configuration**: Navigate to **Admin/Config/coin** and check that coins like BNB and ETH have their main address configured correctly.
+- **Connect mobile app**: Check if mobile app can connect with blockgum node or not. If not then Blockgum node may be down or need license update due to expiry.
 
 ## Step 2: Verify Main Address Balance
 
