@@ -18,6 +18,7 @@ This guide outlines the steps required to process withdrawals using Blockgum in 
 
 - If the main address does not have enough balance, navigate to the URL structured as follows to transfer tokens to the main address:
 
+**Move Tokens  like usdt to main address***
 ```
 http://exchange.local/Coin/blockgum_token_to_main/securecode/cronkey/coinname/tokenNameHere
 
@@ -25,6 +26,16 @@ http://exchange.local/Coin/blockgum_token_to_main/securecode/cronkey/coinname/to
 
 - **URL Replacement**: Replace `exchange.local` with your exchange's URL and `tokenNameHere` with the specific token's name you're processing.
 - **Process Execution**: Follow the on-screen instructions to complete the token transfer.
+
+**Move Main coins like eth/bnb to main address***
+```
+http://exchange.local/Coin/blockgum_coin_to_main/securecode/cronkey/coinname/coinNameHere
+
+```
+
+- **URL Replacement**: Replace `exchange.local` with your exchange's URL and `coinNameHere` with the specific coin's name you're processing , like eth , bnb .
+- **Process Execution**: Follow the on-screen instructions to complete the token transfer.
+
 
 ## Step 4: Reconfirmation
 
