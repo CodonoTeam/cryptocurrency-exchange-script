@@ -1,33 +1,57 @@
-## How to Get Google Client ID and Client Secret?
+# Integrating Google Sign-In into Your Website
 
-Adding Google sign-in to your site can save time for your customers, allowing them to log in through Google in just one click. Before you can integrate Google sign-in into your website, you need to create a Google Client ID and Client Secret.
+Google Sign-In can streamline the login process for your users by allowing them to sign in with their Google account. Follow these steps to create a Google Client ID and Client Secret for your website.
 
-In this tutorial, we'll show you how to get Google Client ID and Client Secret in 10 simple and easy-to-follow steps.
+**Pre-requisites:**
+- You must be signed into a Google account to create a Google Client ID and Client Secret.
 
-**Note:** To generate Google Client ID and Client Secret, you must be signed into a Google account.
+## Steps to Obtain Google Client ID and Client Secret
 
-1. Go to the Google Developers Console. [https://console.cloud.google.com/]
+1. **Access Google Developers Console**
+   - Navigate to the [Google Developers Console](https://console.cloud.google.com/).
 
-2. Click on "Select a project" ➝ "New Project" ➝ click the "Create" button.
+2. **Create a New Project**
+   - Click on "Select a project" at the top of the screen, then "New Project," and finally click the "Create" button.
 
-3. Enter your Project name ➝ click the "Create" button.
+3. **Set Up Project Details**
+   - Enter your Project name and then click the "Create" button.
 
-4. Click on "OAuth consent screen" in the left-side menu ➝ choose the User Type ➝ click the "Create" button.
+4. **Configure OAuth Consent Screen**
+   - Select "OAuth consent screen" from the left sidebar, choose your User Type, and click the "Create" button.
 
-5. Add the Application name ➝ Support email ➝ Authorized domain ➝ Developer content information ➝ click the "Save and Continue" button.
+5. **Enter Application Information**
+   - Provide the following details:
+     - Application name
+     - Support email
+     - Authorized domain (for example, `yoursite.com`)
+     - Developer contact information
+   - Click the "Save and Continue" button.
 
-6. Complete all 4 steps in the OAuth consent screen ➝ click the "Back to Dashboard" button.
+6. **Complete OAuth Consent Steps**
+   - Fill in all required steps on the OAuth consent screen and then click the "Back to Dashboard" button.
 
-7. Go to "Credentials" ➝ click "Create Credentials" ➝ select "OAuth client ID" from the dropdown list.
+7. **Create Credentials**
+   - Go to the "Credentials" section, click "Create Credentials," and choose "OAuth client ID" from the dropdown menu.
 
-8. Open the dropdown list "Application type" ➝ select "Web application" ➝ enter the name of your OAuth 2.0 client.
+8. **Register Application Type**
+   - From the "Application type" dropdown, select "Web application" and enter the name for your OAuth 2.0 client.
 
-9. Enter your site URL in "Authorized JavaScript origins" ➝ in "Authorized redirect URIs," enter the page URL where you want your users redirected back after they have authenticated with Google ➝ click the "Create" button.
+9. **Set Authorized URIs**
+   - Enter your site URL under "Authorized JavaScript origins."
+   - For "Authorized redirect URIs," input the URL where users will be redirected after authentication (e.g., `https://yoursite.com/Login/googleRedirect`).
+   - Click the "Create" button.
 
-   **Important**
-   - Authorized JavaScript Origins -> `https://yoursite.com`
-   - Authorized Redirect URL -> `https://yoursite.com/Login/googleRedirect`
+   > **Important:**
+   > - Authorized JavaScript Origins: `https://yoursite.com`
+   > - Authorized Redirect URL: `https://yoursite.com/Login/googleRedirect`
 
-10. Copy your Client ID and Client Secret.
+10. **Retrieve Client ID and Secret**
+    - Copy your Client ID and Client Secret from the confirmation screen.
 
-11. Open your `other_config.php` file, set `GOOGLE_LOGIN_ALLOWED` to `1`, and paste your `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`.
+11. **Update Your Configuration**
+    - In your `other_config.php` file, set `GOOGLE_LOGIN_ALLOWED` to `1`.
+    - Paste your `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` into the respective fields.
+
+## Next Steps
+
+Once you have obtained your Client ID and Client Secret, proceed with the integration into your site's authentication system using the provided values.
