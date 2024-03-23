@@ -1,4 +1,3 @@
-
 ---
 
 # Codono Mobile App Documentation
@@ -9,6 +8,7 @@ Welcome to the Codono Mobile App documentation. This guide is designed to help d
 
 - [Prerequisites](#prerequisites)
 - [Setting Up the Development Environment](#setting-up-the-development-environment)
+- [Preparing App Icon and Splash Screen](#preparing-app-icon-and-splash-screen)
 - [Compilation Instructions](#compilation-instructions)
   - [Android](#android)
   - [iOS](#ios)
@@ -31,6 +31,12 @@ Before you begin, ensure you have the following installed:
 
 1. Clone the project repository to your local machine.
 2. Navigate to the project directory and run `npm install` to install the required dependencies.
+
+## Preparing App Icon and Splash Screen
+
+Before proceeding with the compilation of the app, you need to prepare the app icon and splash screen images. Create an icon image with dimensions 1024x1024 pixels and name it `icon.png`. Also, create a splash screen image with dimensions 2732x2732 pixels and name it `splash.png`. Place both images in the `/resources/` directory of your project.
+
+This step is crucial for ensuring that your app has a professional appearance and adheres to the platform's guidelines.
 
 ## Compilation Instructions
 
