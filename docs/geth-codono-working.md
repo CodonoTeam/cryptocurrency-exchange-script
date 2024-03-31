@@ -4,7 +4,7 @@
 
 ### User Accounts
 
-Users are provided with distinct addresses so that once balance is transferred to these addresses, it is identified by an automatic cron job named `walleteth_v3ryun10u3n4m3`. Each user's wallet balance must be transferred to the main account to be utilized by the exchange. The main account is an Ethereum address created during the Geth setup; its public address and password (used to encrypt the private key) are stored in the backend coin configuration.
+Users are provided with distinct addresses so that once balance is transferred to these addresses, it is identified by an automatic cron job named `esmart_deposit`. Each user's wallet balance must be transferred to the main account to be utilized by the exchange. The main account is an Ethereum address created during the Geth setup; its public address and password (used to encrypt the private key) are stored in the backend coin configuration.
 
 **Important:** Each user's private key is encrypted with a password specified in `pure_config.php` under the name `ETH_USER_PASS`. Changing this password inappropriately can result in losing access to all user private keys. It is advisable only to change this password during the initial setup of Ethereum and ERC20 tokens with the exchange. To change the password safely, first, transfer all user funds to the main account, then proceed with the password update.
 
