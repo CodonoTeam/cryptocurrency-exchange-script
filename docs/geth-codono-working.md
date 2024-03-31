@@ -53,4 +53,4 @@ To trace missing deposits for Ethereum/ERC20:
 2. **Identify the current block** being read by the exchange by running the `walleteth` cron manually.
 3. Go to `Frontend -> Finance -> Trace Missing`, enter the txid, select the correct chain, and execute the tracing to deposit any missing funds.
 
-**Final Note:** While the above cron jobs facilitate fund transfers, for long-term efficiency, consider using blockgum, as they are faster and less expensive.
+**Final Note:** While the above cron jobs facilitate fund transfers, for long-term efficiency, consider using `blockgum`, as they are faster and less expensive.
