@@ -144,13 +144,13 @@ Here's a list of additional wallet features and integrated nodes, along with sup
 
 1. **BTC Type [BTC, BCH, LTC, DOGE, DASH, ZCASH, PivX, etc]:** Support for various Bitcoin-type cryptocurrencies including Bitcoin, Bitcoin Cash, Litecoin, Dogecoin, Dash, Zcash, PivX, and more.
 
-2. **ETH ERC20 [Ethereum and All ERC20 Tokens]:** Integration with Ethereum network and support for all ERC20 tokens built on the Ethereum blockchain.
+2. **ALL EVM CHAINS [ERC20/BEP20/FTM20/AVAX20]:** Integration with All EVM networks and support for all standard ERC20 tokens built on the EVM blockchain. See [chainlist](https://chainlist.org/) to see complete list of supported evm chains.
 
 3. **Waves and Tokens:** Integration with the Waves blockchain and support for tokens created on the Waves platform.
 
 4. **XMR and Cryptonote:** Support for Monero (XMR) and other cryptocurrencies using the Cryptonote protocol.
 
-5. **BNB and BEP20 Tokens:** Integration with Binance Smart Chain (BSC) and support for BEP20 tokens.
+5. **Block.io:** Integration with Block.io
 
 6. **XRP:** Integration with the Ripple (XRP) blockchain, allowing users to hold and trade XRP.
 
@@ -164,6 +164,9 @@ Here's a list of additional wallet features and integrated nodes, along with sup
 
 11. **Nexa Chain and Tokens:** Integration with Nexa Chain and support for its native tokens.
 
+12. **cryptoapis.io:** Integration with Cryptoapis.io
+
+    
 **Fiat Gateways:**
 
 1. **Bank Deposit:** Allow users to deposit funds directly from their bank accounts.
