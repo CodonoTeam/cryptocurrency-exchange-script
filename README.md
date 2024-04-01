@@ -146,7 +146,7 @@ Here's a list of additional wallet features and integrated nodes, along with sup
 
 2. **ALL EVM CHAINS [ERC20/BEP20/FTM20/AVAX20]:** Integration with All EVM networks and support for all standard ERC20 tokens built on the EVM blockchain. See [chainlist](https://chainlist.org/) to see complete list of supported evm chains.
 
-3. **Waves and Tokens:** Integration with the Waves blockchain and support for tokens created on the Waves platform.
+3. **TRX TRC20/TRC10:** Support for TRON's TRC20 and TRC10 tokens, available with the Pro and Ultra editions.
 
 4. **XMR and Cryptonote:** Support for Monero (XMR) and other cryptocurrencies using the Cryptonote protocol.
 
@@ -154,17 +154,17 @@ Here's a list of additional wallet features and integrated nodes, along with sup
 
 6. **XRP:** Integration with the Ripple (XRP) blockchain, allowing users to hold and trade XRP.
 
-7. **CoinPayments [2000+ Coins and Tokens]:** Integration with CoinPayments to support over 2000 cryptocurrencies and tokens.
+7. **CoinPayments [2000+ Coins and Tokens]:** Integration with CoinPayments to support over 2000+ cryptocurrencies and tokens.
 
-8. **TRX TRC20/TRC10 [With Zues/Ultra Only]:** Support for TRON's TRC20 and TRC10 tokens, available with the Zues and Ultra editions.
-
-9. **Blockgum Integration:** Integration with Blockgum blockchain for enhanced functionality.
+8. **Waves and Tokens:** Integration with the Waves blockchain and support for tokens created on the Waves platform.
+   
+9. **Blockgum Integration:** Integration with [Blockgum](https://codono.com) Node for enhanced functionality for All EVM chains and Cross chain wallet.
 
 10. **Polkadot:** Support for the Polkadot blockchain ecosystem.
 
 11. **Nexa Chain and Tokens:** Integration with Nexa Chain and support for its native tokens.
 
-12. **cryptoapis.io:** Integration with Cryptoapis.io
+12. **CryptoApis.io:** Integration with Cryptoapis.io
 
     
 **Fiat Gateways:**
