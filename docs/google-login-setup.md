@@ -1,9 +1,9 @@
-# Integrating Google Sign-In into Your Website
+# Integrating Google Sign-In into Your Crypto Exchange
 
-Google Sign-In can streamline the login process for your users by allowing them to sign in with their Google account. Follow these steps to create a Google Client ID and Client Secret for your website.
+Integrating Google Sign-In can streamline the login process by allowing users to authenticate using their Google account. This guide will help you create a Google Client ID and Client Secret for your crypto exchange platform.
 
 **Pre-requisites:**
-- You must be signed into a Google account to create a Google Client ID and Client Secret.
+- A Google account is required to access the Google Developers Console.
 
 ## Steps to Obtain Google Client ID and Client Secret
 
@@ -11,47 +11,44 @@ Google Sign-In can streamline the login process for your users by allowing them 
    - Navigate to the [Google Developers Console](https://console.cloud.google.com/).
 
 2. **Create a New Project**
-   - Click on "Select a project" at the top of the screen, then "New Project," and finally click the "Create" button.
+   - Click on "Select a project" at the top of the screen, then choose "New Project." Complete the form and click "Create."
 
-3. **Set Up Project Details**
-   - Enter your Project name and then click the "Create" button.
+3. **Configure OAuth Consent Screen**
+   - Select Api & Services > "OAuth consent screen" from the sidebar. Choose your User Type (usually 'External' for crypto exchanges) and click "Create."
 
-4. **Configure OAuth Consent Screen**
-   - Select "OAuth consent screen" from the left sidebar, choose your User Type, and click the "Create" button.
-
-5. **Enter Application Information**
+4. **Enter Application Information**
    - Provide the following details:
      - Application name
      - Support email
-     - Authorized domain (for example, `yoursite.com`)
+     - Authorized domain (e.g., `yoursite.com`)
      - Developer contact information
-   - Click the "Save and Continue" button.
+   - Click "Save and Continue."
 
-6. **Complete OAuth Consent Steps**
-   - Fill in all required steps on the OAuth consent screen and then click the "Back to Dashboard" button.
+5. **Complete OAuth Consent Steps**
+   - Complete the required steps indicated on the OAuth consent screen, then click "Back to Dashboard."
 
-7. **Create Credentials**
-   - Go to the "Credentials" section, click "Create Credentials," and choose "OAuth client ID" from the dropdown menu.
+6. **Create Credentials**
+   - Navigate to the "Credentials" tab, click "Create Credentials," and select "OAuth client ID."
 
-8. **Register Application Type**
-   - From the "Application type" dropdown, select "Web application" and enter the name for your OAuth 2.0 client.
+7. **Register Application Type**
+   - Choose "Web application" as the "Application type." Provide a name for your OAuth 2.0 client.
 
-9. **Set Authorized URIs**
-   - Enter your site URL under "Authorized JavaScript origins."
-   - For "Authorized redirect URIs," input the URL where users will be redirected after authentication (e.g., `https://yoursite.com/Login/googleRedirect`).
-   - Click the "Create" button.
+8. **Set Authorized URIs**
+   - Under "Authorized JavaScript origins," add your site URL.
+   - For "Authorized redirect URIs," enter the URL where users will be redirected after authentication (e.g., `https://yoursite.com/Login/googleRedirect`).
+   - Click "Create."
 
    > **Important:**
    > - Authorized JavaScript Origins: `https://yoursite.com`
    > - Authorized Redirect URL: `https://yoursite.com/Login/googleRedirect`
 
-10. **Retrieve Client ID and Secret**
-    - Copy your Client ID and Client Secret from the confirmation screen.
+9. **Retrieve Client ID and Secret**
+    - Copy the Client ID and Client Secret from the confirmation screen.[ Or even save JSON file for future reference]
 
-11. **Update Your Configuration**
-    - In your `other_config.php` file, set `GOOGLE_LOGIN_ALLOWED` to `1`.
-    - Paste your `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` into the respective fields.
+10. **Update Your Configuration**
+    - In your site's configuration file (e.g., `other_config.php`), set `GOOGLE_LOGIN_ALLOWED` to `1`.
+    - Add your `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` to the respective fields.
 
 ## Next Steps
 
-Once you have obtained your Client ID and Client Secret, proceed with the integration into your site's authentication system using the provided values.
+With the Client ID and Client Secret, you can now integrate Google Sign-In into your site's authentication system. Ensure to follow security best practices when handling and storing these credentials.
