@@ -114,7 +114,8 @@ The Crypto Exchange Script is a versatile solution for building a comprehensive 
 13. **Staking / Invest:** Stake cryptocurrencies for rewards or invest in assets.
 14. **Mining Module:** Enable cryptocurrency mining with rewards.
 15. **Dex Sell [Metamask]:** Integrate DEX for token trading via Metamask wallets.
-16. **All Standard Features:** User registration, security (2FA, recaptcha), order book, trade history, real-time price charts, and more.
+16. **LeaderBoard** Leaderboard is a dynamic feature designed to enhance user engagement and foster a competitive spirit among the users of our platform.[Leaderboard](features/leaderboard.md)
+17. **All Standard Features:** User registration, security (2FA, recaptcha), order book, trade history, real-time price charts, and more.
 
 ### Whitelabel Crypto Exchange Script: A Swift Path to Market
 
