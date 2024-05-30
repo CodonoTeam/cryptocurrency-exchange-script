@@ -10,6 +10,8 @@ fi
 
 # Extract the DOMAIN value from the credentials file
 DOMAIN=$(awk '/DOMAIN:/ {print $2}' "$CREDENTIALS_FILE")
+PHP_PATH='/usr/local/php/bin/php';
+CRON_KEY=$(grep 'CRON_KEY:' /opt/credentials.yml | cut -d ' ' -f 2)
 
 # Check if DOMAIN was found
 if [ -z "$DOMAIN" ]; then
@@ -43,35 +45,35 @@ INDEX_PATH="/data/wwwroot/${DOMAIN}"
 
 # Define the cron jobs
 CRON_JOBS=(
-"* * * * * cd ${INDEX_PATH} && php index.php Coin/deposit_btctype/securecode/cronkey/ > /dev/null"
-"* * * * * cd ${INDEX_PATH} && php index.php Coin/deposit_cryptoapis/securecode/cronkey/ > /dev/null"
-"* * * * * cd ${INDEX_PATH} && php index.php Coin/substrate_deposit/securecode/cronkey/ > /dev/null"
-"*/5 * * * * cd ${INDEX_PATH} && php index.php Coin/getWithdrawalIdSubstrate/securecode/cronkey/ > /dev/null"
-"* * * * * cd ${INDEX_PATH} && php index.php Coin/blockgum_deposit/securecode/cronkey/ > /dev/null"
-"*/5 * * * * cd ${INDEX_PATH} && php index.php Coin/getWithdrawalIdBlockgum/securecode/cronkey/ > /dev/null"
-"* * * * * cd ${INDEX_PATH} && php index.php Coin/wallet_cryptonote_deposit/securecode/cronkey/ > /dev/null"
-"* * * * * cd ${INDEX_PATH} && php index.php Coin/wallet_cryptonote2_deposit/securecode/cronkey/ > /dev/null"
-"*/5 * * * * cd ${INDEX_PATH} && php index.php Coin/wallet_blockio_deposit/securecode/cronkey/ > /dev/null"
-"*/5 * * * * cd ${INDEX_PATH} && php index.php Coin/wallet_blockio_withdraw/securecode/cronkey/ > /dev/null"
-"* * * * * cd ${INDEX_PATH} && php index.php Coin/esmart_deposit/securecode/cronkey/chain/chainNameHere > /dev/null"
-"*/5 * * * * cd ${INDEX_PATH} && php index.php Coin/wallet_coinpay_deposit/securecode/cronkey/ > /dev/null"
-"*/5 * * * * cd ${INDEX_PATH} && php index.php Coin/wallet_coinpay_withdraw/securecode/cronkey/ > /dev/null"
+"* * * * * cd ${INDEX_PATH} && ${PHP_PATH} index.php Coin/deposit_btctype/securecode/${CRON_KEY}/ > /dev/null"
+"* * * * * cd ${INDEX_PATH} && ${PHP_PATH} index.php Coin/deposit_cryptoapis/securecode/${CRON_KEY}/ > /dev/null"
+"* * * * * cd ${INDEX_PATH} && ${PHP_PATH} index.php Coin/substrate_deposit/securecode/${CRON_KEY}/ > /dev/null"
+"*/5 * * * * cd ${INDEX_PATH} && ${PHP_PATH} index.php Coin/getWithdrawalIdSubstrate/securecode/${CRON_KEY}/ > /dev/null"
+"* * * * * cd ${INDEX_PATH} && ${PHP_PATH} index.php Coin/blockgum_deposit/securecode/${CRON_KEY}/ > /dev/null"
+"*/5 * * * * cd ${INDEX_PATH} && ${PHP_PATH} index.php Coin/getWithdrawalIdBlockgum/securecode/${CRON_KEY}/ > /dev/null"
+"* * * * * cd ${INDEX_PATH} && ${PHP_PATH} index.php Coin/wallet_cryptonote_deposit/securecode/${CRON_KEY}/ > /dev/null"
+"* * * * * cd ${INDEX_PATH} && ${PHP_PATH} index.php Coin/wallet_cryptonote2_deposit/securecode/${CRON_KEY}/ > /dev/null"
+"*/5 * * * * cd ${INDEX_PATH} && ${PHP_PATH} index.php Coin/wallet_blockio_deposit/securecode/${CRON_KEY}/ > /dev/null"
+"*/5 * * * * cd ${INDEX_PATH} && ${PHP_PATH} index.php Coin/wallet_blockio_withdraw/securecode/${CRON_KEY}/ > /dev/null"
+"* * * * * cd ${INDEX_PATH} && ${PHP_PATH} index.php Coin/esmart_deposit/securecode/${CRON_KEY}/chain/chainNameHere > /dev/null"
+"*/5 * * * * cd ${INDEX_PATH} && ${PHP_PATH} index.php Coin/wallet_coinpay_deposit/securecode/${CRON_KEY}/ > /dev/null"
+"*/5 * * * * cd ${INDEX_PATH} && ${PHP_PATH} index.php Coin/wallet_coinpay_withdraw/securecode/${CRON_KEY}/ > /dev/null"
 )
 
 # Mandatory cron jobs (always added)
 MANDATORY_CRON_JOBS=(
-"* * * * * cd ${INDEX_PATH} && php index.php Tron/cronDeposits/securecode/cronkey/ > /dev/null"
-"* * * * * cd ${INDEX_PATH} && php index.php Xtrade/cronMe/securecode/cronkey/ > /dev/null"
-"* * * * * cd ${INDEX_PATH} && php index.php Xtrade/otcTrade/securecode/cronkey/ > /dev/null"
-"* * * * * cd ${INDEX_PATH} && php index.php Selfengine/CreateOrderbook/securecode/cronkey/ > /dev/null"
-"0 9 * * * cd ${INDEX_PATH} && php index.php Selfengine/cleanUp/securecode/cronkey/ > /dev/null"
-"0 9 * * * cd ${INDEX_PATH} && php index.php Queue/checkStaking/securecode/cronkey/ > /dev/null"
-"* * * * * cd ${INDEX_PATH} && php index.php Queue/BinanceUpdate/securecode/cronkey/ > /dev/null"
-"* * * * * cd ${INDEX_PATH} && php index.php Queue/ExchangeBinanceUpdate/securecode/cronkey/ > /dev/null"
-"* * * * * cd ${INDEX_PATH} && php index.php Queue/cmcUpdate/securecode/cronkey/ > /dev/null"
-"* * * * * cd ${INDEX_PATH} && php index.php Queue/cmcUpdateRate/securecode/cronkey/ > /dev/null"
-"* * * * * cd ${INDEX_PATH} && php index.php Queue/send_notifications/securecode/cronkey/ > /dev/null"
-"*/10 * * * * cd ${INDEX_PATH} && php index.php Queue/genInternalCharts/securecode/cronkey/ > /dev/null"
+"* * * * * cd ${INDEX_PATH} && ${PHP_PATH} index.php Tron/cronDeposits/securecode/${CRON_KEY}/ > /dev/null"
+"* * * * * cd ${INDEX_PATH} && ${PHP_PATH} index.php Xtrade/cronMe/securecode/${CRON_KEY}/ > /dev/null"
+"* * * * * cd ${INDEX_PATH} && ${PHP_PATH} index.php Xtrade/otcTrade/securecode/${CRON_KEY}/ > /dev/null"
+"* * * * * cd ${INDEX_PATH} && ${PHP_PATH} index.php Selfengine/CreateOrderbook/securecode/${CRON_KEY}/ > /dev/null"
+"0 9 * * * cd ${INDEX_PATH} && ${PHP_PATH} index.php Selfengine/cleanUp/securecode/${CRON_KEY}/ > /dev/null"
+"0 9 * * * cd ${INDEX_PATH} && ${PHP_PATH} index.php Queue/checkStaking/securecode/${CRON_KEY}/ > /dev/null"
+"* * * * * cd ${INDEX_PATH} && ${PHP_PATH} index.php Queue/BinanceUpdate/securecode/${CRON_KEY}/ > /dev/null"
+"* * * * * cd ${INDEX_PATH} && ${PHP_PATH} index.php Queue/ExchangeBinanceUpdate/securecode/${CRON_KEY}/ > /dev/null"
+"* * * * * cd ${INDEX_PATH} && ${PHP_PATH} index.php Queue/cmcUpdate/securecode/${CRON_KEY}/ > /dev/null"
+"* * * * * cd ${INDEX_PATH} && ${PHP_PATH} index.php Queue/cmcUpdateRate/securecode/${CRON_KEY}/ > /dev/null"
+"* * * * * cd ${INDEX_PATH} && ${PHP_PATH} index.php Queue/send_notifications/securecode/${CRON_KEY}/ > /dev/null"
+"*/10 * * * * cd ${INDEX_PATH} && ${PHP_PATH} index.php Queue/genInternalCharts/securecode/${CRON_KEY}/ > /dev/null"
 )
 
 # Start with mandatory cron jobs
