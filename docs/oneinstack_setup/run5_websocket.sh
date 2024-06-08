@@ -55,4 +55,17 @@ supervisorctl reload
 echo "Starting socketbot..."
 supervisorctl start socketbot
 
-echo "Setup complete. WebSocket and Supervisor are configured."
+# Add sudoers file for www user
+NEW_SUDOERS_FILE="/etc/sudoers.d/www_sudoers"
+echo "www ALL=(ALL) NOPASSWD: /usr/bin/supervisorctl restart all" > ${NEW_SUDOERS_FILE}
+chmod 440 ${NEW_SUDOERS_FILE}
+visudo -c -f ${NEW_SUDOERS_FILE}
+if [ $? -ne 0 ]; then
+  echo "Failed to validate the sudoers file, removing..."
+  rm ${NEW_SUDOERS_FILE}
+  exit 1
+else
+  echo "Sudoers file for www user has been updated and validated."
+fi
+
+echo "Socket Setup complete. WebSocket and Supervisor are configured."
