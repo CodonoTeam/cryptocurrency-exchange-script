@@ -34,7 +34,7 @@ stdout_logfile=/var/log/supervisor/socketbot.out.log
 EOF
 
 # Update other_config.php with the new domain for WebSocket
-sed -i "s|define('SOCKET_WS_URL',.*|define('SOCKET_WS_URL', \"wss://${DOMAIN}/wsocket\");|" ${OTHER_CONFIG_PHP}
+sed -i "s|const SOCKET_WS_URL =.*|const SOCKET_WS_URL = \"wss://${DOMAIN}/wsocket\";|" ${OTHER_CONFIG_PHP}
 
 # Add/update the Nginx configuration for WebSocket forwarding
 NGINX_CONF="${NGINX_CONF_PATH}/${DOMAIN}.conf"
