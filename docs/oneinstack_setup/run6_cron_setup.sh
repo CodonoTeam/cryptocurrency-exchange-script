@@ -23,9 +23,9 @@ fi
 declare -A CRON_JOB_GROUPS
 CRON_JOB_GROUPS[1]="0" # BTC Deposit
 CRON_JOB_GROUPS[2]="1" # CryptoApis Deposit
-CRON_JOB_GROUPS[3]="2" # Substrate Deposit
-CRON_JOB_GROUPS[4]="3 4" # Blockgum Deposit and Withdrawal ID
-CRON_JOB_GROUPS[5]="5 6" # Cryptonote
+CRON_JOB_GROUPS[3]="2 3" # Substrate Deposit
+CRON_JOB_GROUPS[4]="4 5" # Blockgum Deposit and Withdrawal ID
+CRON_JOB_GROUPS[5]="6 7" # Cryptonote
 CRON_JOB_GROUPS[6]="11 12" # Coinpayments
 
 # Define the user interface
