@@ -20,47 +20,61 @@ if [ -z "$STY" ]; then
     exit
 fi
 
-# Prompt user for domain name input
-read -p "Please input domain(example: example.com): " domain
-domain=${domain,,} # Convert domain to lowercase to avoid issues
+# Check if credentials.yml exists
+if [ -f /opt/credentials.yml ]; then
+    echo "credentials.yml already exists. Using existing credentials."
+    # Load existing credentials
+    HTACCESS_USERNAME=$(grep 'HTACCESS_USERNAME' /opt/credentials.yml | awk '{print $2}')
+    HTACCESS_PASSWORD=$(grep 'HTACCESS_PASSWORD' /opt/credentials.yml | awk '{print $2}')
+    REDIS_PASSWORD=$(grep 'REDIS_PASSWORD' /opt/credentials.yml | awk '{print $2}')
+    MYSQL_NEW_ROOT_PASSWORD=$(grep 'MYSQL_NEW_ROOT_PASSWORD' /opt/credentials.yml | awk '{print $2}')
+    DB_NAME=$(grep 'DB_NAME' /opt/credentials.yml | awk '{print $2}')
+    ADMIN_KEY=$(grep 'ADMIN_KEY' /opt/credentials.yml | awk '{print $2}')
+    CRON_KEY=$(grep 'CRON_KEY' /opt/credentials.yml | awk '{print $2}')
+    ADMIN_USER=$(grep 'ADMIN_USER' /opt/credentials.yml | awk '{print $2}')
+    ADMIN_PASS=$(grep 'ADMIN_PASS' /opt/credentials.yml | awk '{print $2}')
+    TWO_FA_SECRET_KEY=$(grep 'TWO_FA_SECRET_KEY' /opt/credentials.yml | awk '{print $2}')
+    domain=$(grep 'DOMAIN' /opt/credentials.yml | awk '{print $2}')
+else
+    # Prompt user for domain name input if DOMAIN is not in credentials.yml
+    read -p "Please input domain (example: example.com): " domain
+    domain=${domain,,} # Convert domain to lowercase to avoid issues
 
+    # Clean the input: remove https://, www, and trailing slashes
+    domain=$(echo "$domain" | sed -e 's/^https:\/\///' -e 's/^www\.//' -e 's/\/$//')
 
-# Clean the input: remove https://, www, and trailing slashes
-domain=$(echo "$domain" | sed -e 's/^https:\/\///' -e 's/^www\.//' -e 's/\/$//')
+    # Step 0: Create random credentials
+    generate_password() {
+        local length=$1
+        tr -dc A-Za-z0-9 </dev/urandom | head -c ${length} ; echo ''
+    }
+    generate_2fa_secret_key() {
+        # Generate 10 random bytes
+        local random_bytes=$(openssl rand 10)
+        # Directly encode these bytes into base32
+        local secret_key=$(echo -n "$random_bytes" | base32 | tr -d '=')
+        echo "$secret_key"
+    }
 
-# Step 0: Create random credentials
-generate_password() {
-    local length=$1
-    tr -dc A-Za-z0-9 </dev/urandom | head -c ${length} ; echo ''
-}
-generate_2fa_secret_key() {
-    # Generate 10 random bytes
-    local random_bytes=$(openssl rand 10)
-    # Directly encode these bytes into base32
-    local secret_key=$(echo -n "$random_bytes" | base32 | tr -d '=')
-    echo "$secret_key"
-}
+    # Generating credentials with prefixes
+    HTACCESS_USERNAME="HU_$(generate_password 16)"
+    HTACCESS_PASSWORD="HP_$(generate_password 32)"
+    REDIS_PASSWORD="$(generate_password 16)"
+    MYSQL_NEW_ROOT_PASSWORD="MP_$(generate_password 40)"
 
+    # Others required for 2nd step
+    DB_NAME="DBN_$(generate_password 16)"
+    ADMIN_KEY="AK_$(generate_password 42)"
+    CRON_KEY="CK_$(generate_password 40)"
 
-# Generating credentials with prefixes
-HTACCESS_USERNAME="HU_$(generate_password 16)"
-HTACCESS_PASSWORD="HP_$(generate_password 32)"
-REDIS_PASSWORD="$(generate_password 16)"
-MYSQL_NEW_ROOT_PASSWORD="MP_$(generate_password 40)"
+    # to db update later
+    ADMIN_USER="AU_$(generate_password 11)"
+    ADMIN_PASS="AP_$(generate_password 40)"
+    TWO_FA_SECRET_KEY=$(generate_2fa_secret_key)
 
-# Others required for 2nd step
-DB_NAME="DBN_$(generate_password 16)"
-ADMIN_KEY="AK_$(generate_password 42)"
-CRON_KEY="CK_$(generate_password 40)"
-
-# to db update later
-ADMIN_USER="AU_$(generate_password 11)"
-ADMIN_PASS="AP_$(generate_password 40)"
-TWO_FA_SECRET_KEY=$(generate_2fa_secret_key)
-
-cd /opt/
-# Save credentials to a YAML file
-cat <<EOF >credentials.yml
+    cd /opt/
+    # Save credentials to a YAML file
+    cat <<EOF >credentials.yml
 HTACCESS_USERNAME: $HTACCESS_USERNAME
 HTACCESS_PASSWORD: $HTACCESS_PASSWORD
 REDIS_PASSWORD: $REDIS_PASSWORD
@@ -73,10 +87,11 @@ ADMIN_PASS: $ADMIN_PASS
 TWO_FA_SECRET_KEY: $TWO_FA_SECRET_KEY
 DOMAIN: $domain
 EOF
-echo "Credentials have been saved to credentials.yml too"
+    echo "Credentials have been saved to credentials.yml."
+fi
 
 # Step 1: Install OneInStack
-cd /opt/ && wget -c http://mirrors.oneinstack.com/oneinstack-full.tar.gz && tar xzf oneinstack-full.tar.gz && ./oneinstack/install.sh --nginx_option 1 --apache  --apache_mpm_option 1 --apache_mode_option 1 --php_option 9 --phpcache_option 1 --php_extensions fileinfo,redis,swoole --phpmyadmin  --db_option 5 --dbinstallmethod 1 --dbrootpwd $MYSQL_NEW_ROOT_PASSWORD --redis  --memcached 
+cd /opt/ && wget -c http://mirrors.oneinstack.com/oneinstack-full.tar.gz && tar xzf oneinstack-full.tar.gz && ./oneinstack/install.sh --nginx_option 1 --apache --apache_mpm_option 1 --apache_mode_option 1 --php_option 9 --phpcache_option 1 --php_extensions fileinfo,redis,swoole --phpmyadmin --db_option 5 --dbinstallmethod 1 --dbrootpwd $MYSQL_NEW_ROOT_PASSWORD --redis --memcached 
 
 # Step 2: Modify php.ini
 sed -i '/disable_functions/s/exec,//' /usr/local/php/etc/php.ini
@@ -96,11 +111,9 @@ service php-fpm restart
 echo "GMP extension installation is complete."
 
 # Step 4: Configure MySQL
-
 cd /opt/oneinstack
 sed -i 's/bind-address = 0.0.0.0/bind-address = 127.0.0.1/' /etc/my.cnf
 systemctl restart mysql
-
 
 # Step 5: Setup .htaccess authentication
 HTPASSWD_DIR="/usr/local/apache"
@@ -119,9 +132,7 @@ Require valid-user" > $PROTECTED_DIR/.htaccess
 service httpd restart
 
 # Step 6: Configure Redis
-
 sed -i "s/^# requirepass foobared/requirepass $REDIS_PASSWORD/" /usr/local/redis/etc/redis.conf
-
 service redis-server restart
 
 # Print credentials
