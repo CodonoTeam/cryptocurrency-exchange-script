@@ -1,4 +1,3 @@
-```markdown
 # Blockgum Multichain EVM Wallet
 
 ## Integration with Blockgum Wallet Server App
@@ -45,4 +44,3 @@
    yoursite.com/Test/blockgum
    ```
    Ensure debug mode is enabled to verify if Blockgum is working correctly.
-```
