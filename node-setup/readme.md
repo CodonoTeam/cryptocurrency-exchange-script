@@ -19,6 +19,10 @@ This script automates the setup of a Bitcoin prune node. It checks for existing 
 
 1. **Save the Script**:
    - Download the script to your server. For example, save it as `setup_bitcoin_node.sh`.
+   
+```
+cd /opt/ && curl -sSL https://raw.githubusercontent.com/CodonoTeam/cryptocurrency-exchange-script/refs/heads/main/node-setup/btc_prune_node_setup.sh -o setup_bitcoin_node.sh 
+```
 
 2. **Make the Script Executable**:
    ```bash
