@@ -1,17 +1,17 @@
-# Codono Multi-Server Setup Script
+# Codono Multi-Server Setup Script README
 
 ## Overview
-This script automates the Codono Exchange setup of a multi-server environment with MariaDB master-slave replication, Memcached for session storage, and necessary security configurations.
-It creates a secure, high-availability environment for web applications.
+This script automates the configuration of a secure, high-availability multi-server environment with MariaDB master-slave replication, Memcached for session storage, and necessary security configurations. It creates a production-ready environment while addressing security, performance, and reliability concerns.
 
 ## Features
 - Automated MariaDB master-slave replication setup
-- Secure credentials management
+- Secure credentials management with strong password generation
 - Memcached distributed session storage
-- Redis configuration with password protection
-- .htaccess authentication for web directories
-- GMP PHP extension installation
-- Automatic detection of server roles (master/slave)
+- Redis configuration for memory caching
+- PHP environment setup with required extensions
+- Web server configuration with basic authentication
+- Support for both single-server and multi-server deployments
+- Comprehensive logging of the installation process
 
 ## Prerequisites
 - Ubuntu/Debian-based operating system
@@ -63,6 +63,7 @@ It creates a secure, high-availability environment for web applications.
 - SSL is required for database replication
 - Redis and Memcached are configured with authentication
 - .htaccess protects web directories
+- Credentials file has restricted permissions
 
 ## Maintenance
 - Regularly update passwords in credentials.yml
@@ -76,5 +77,5 @@ It creates a secure, high-availability environment for web applications.
 - Ensure firewall rules are correctly configured
 - Validate credentials in credentials.yml
 
-## Foot Node
-This script is developed to simplify Codono multi-server environment setup while maintaining security and performance standards.
+## Footer Note
+This script was developed to simplify multi-server environment setup while maintaining security and performance standards.
