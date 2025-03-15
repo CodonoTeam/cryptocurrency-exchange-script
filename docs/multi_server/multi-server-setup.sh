@@ -29,7 +29,7 @@ load_credentials() {
     ADMIN_KEY=$(grep 'ADMIN_KEY:' /opt/credentials.yml | awk '{print $2}')
     CRON_KEY=$(grep 'CRON_KEY:' /opt/credentials.yml | awk '{print $2}')
     ADMIN_USER=$(grep 'ADMIN_USER:' /opt/credentials.yml | awk '{print $2}')
-    ADMIN_PASS=$(grep 'ADMIN_PASS:' /opt/credentials.yml | awk '{print $2}')
+    ADMIN_PASS=$(grep 'ADMIN_USER:' /opt/credentials.yml | awk '{print $2}')
     TWO_FA_SECRET_KEY=$(grep 'TWO_FA_SECRET_KEY:' /opt/credentials.yml | awk '{print $2}')
     REPLICATION_USER_PASSWORD=$(grep 'REPLICATION_USER_PASSWORD:' /opt/credentials.yml | awk '{print $2}')
     domain=$(grep 'DOMAIN:' /opt/credentials.yml | awk '{print $2}')
@@ -190,9 +190,15 @@ AuthUserFile $HTPASSWD_FILE
 Require valid-user" > $PROTECTED_DIR/.htaccess
 service httpd restart
 
-# Step 6: Configure Redis
+# Step 6: Configure Redis for memory caching across servers
+# Configure Redis to listen on all interfaces
+sed -i 's/bind 127.0.0.1/bind 0.0.0.0/' /usr/local/redis/etc/redis.conf
+
+# Set up authentication
 sed -i "s/^# requirepass foobared/requirepass $REDIS_PASSWORD/" /usr/local/redis/etc/redis.conf
-service redis-server restart
+
+# Restart Redis service
+systemctl restart redis-server
 
 # Step 7: Configure Memcached for session storage
 if ! command -v memcached &> /dev/null; then
@@ -203,9 +209,16 @@ fi
 sed -i 's/-l 127.0.0.1/-l 0.0.0.0/' /etc/memcached.conf
 service memcached restart
 
+# Configure PHP to use Memcached for sessions
 cat <<EOF >/usr/local/php/etc/php.d/memcached-session.ini
 session.save_handler = memcached
 session.save_path = "$MEMCACHED_SERVERS"
+EOF
+
+# Configure PHP to use Redis for caching
+cat <<EOF >/usr/local/php/etc/php.d/redis-caching.ini
+extension=redis.so
+redis.cache.save_path = "tcp://$master_ip:6379?auth=$REDIS_PASSWORD,tcp://$slave_ip:6379?auth=$REDIS_PASSWORD"
 EOF
 
 service php-fpm restart
