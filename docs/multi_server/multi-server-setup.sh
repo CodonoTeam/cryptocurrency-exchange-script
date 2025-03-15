@@ -15,26 +15,42 @@ log() {
     esac
 }
 
-# Check if 'screen' is installed, if not then install it
+# Ensure 'screen' is installed
 if ! command -v screen &> /dev/null; then
-    log "'screen' is not installed. Attempting to install..."
+    log "'screen' is not installed. Installing..."
     if ! (sudo apt-get update && sudo apt-get install -y screen); then
-        log "Failed to install 'screen'. Exiting."
+        log "Error: Failed to install 'screen'. Exiting."
         exit 1
     fi
     log "'screen' successfully installed."
 fi
 
-# Check for existing screen session
-if screen -list | grep -q "codono"; then
-    log "A screen session named 'codono' is already running. Reattach with 'screen -r codono'."
-    exit 1
+# Check for an existing 'codono' screen session
+if screen -list | grep -q "\.codono"; then
+    log "A screen session named 'codono' is already running."
+    log "Reattach using: screen -r codono"
+    exit 0
 fi
 
-# Check if inside a screen session. If not, start a new screen session to run this script.
+# If not inside a screen session, start one
 if [ -z "$STY" ]; then
     log "Starting a new screen session: codono"
-    screen -dmS codono /bin/bash "$0"
+
+    # Start screen with a persistent interactive shell
+    screen -dmS codono /bin/bash -c "bash -i"
+
+    # Sleep to ensure session starts
+    sleep 1
+
+    # Confirm session creation
+    if screen -list | grep -q "\.codono"; then
+        log "Screen session 'codono' started successfully."
+        log "Reattach using: screen -r codono"
+    else
+        log "Error: Failed to start 'codono' screen session."
+        exit 1
+    fi
+
     exit 0
 fi
 
@@ -78,7 +94,7 @@ load_credentials() {
 
 # Function to validate domain format
 validate_domain() {
-    local domain_regex="^([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$"
+    local domain_regex="^([a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$"
     [[ $1 =~ $domain_regex ]]
 }
 
