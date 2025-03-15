@@ -15,52 +15,27 @@ log() {
     esac
 }
 
-# Ensure 'screen' is installed
+
+# Check if 'screen' is installed, if not then install it
 if ! command -v screen &> /dev/null; then
-    log "'screen' is not installed. Installing..."
-    if ! (sudo apt-get update && sudo apt-get install -y screen); then
-        log "Error: Failed to install 'screen'. Exiting."
-        exit 1
-    fi
-    log "'screen' successfully installed."
-fi
-
-# Check for an existing 'codono' screen session
-if screen -list | grep -q "\.codono"; then
-    log "A screen session named 'codono' is already running."
-    log "Reattach using: screen -r codono"
-    exit 0
-fi
-
-# If not inside a screen session, start one and run this script
-if [ -z "$STY" ]; then
-    log "Starting a new screen session: codono"
-    
-    # Run this script inside the screen session
-    screen -dmS codono /bin/bash -c "$0"
-    
-    sleep 1
-
-    if screen -list | grep -q "\.codono"; then
-        log "Screen session 'codono' started successfully."
-        log "Reattach using: screen -r codono"
+    echo "'screen' is not installed. Attempting to install..."
+    # Use apt-get if you are on Debian/Ubuntu. Adjust as needed for other distros (yum, zypper, pacman, etc.)
+    sudo apt-get update && sudo apt-get install -y screen
+    if [ $? -eq 0 ]; then
+        echo "'screen' successfully installed."
     else
-        log "Error: Failed to start 'codono' screen session."
+        echo "Failed to install 'screen'. Exiting."
         exit 1
     fi
-
-    exit 0
 fi
 
-# ✅ If inside the screen, the script execution continues normally
-log "Inside screen session. Running main script tasks..."
+# Check if inside a screen session. If not, start a new screen session to run this script.
+if [ -z "$STY" ]; then
+    screen -dm -S codono /bin/bash "$0"
+    echo "Started setup in a screen session named codono , This process can take upto 10-20 mins. You can reattach to it with 'screen -r codono'."
+    exit
+fi
 
-# Your script logic continues here
-# Example: Run a command or loop
-while true; do
-    log "Screen session is active. Running tasks..."
-    sleep 10
-done
 
 # Function to load credentials from credentials.yml using yq if available
 load_credentials() {
