@@ -32,17 +32,15 @@ if screen -list | grep -q "\.codono"; then
     exit 0
 fi
 
-# If not inside a screen session, start one
+# If not inside a screen session, start one and run this script
 if [ -z "$STY" ]; then
     log "Starting a new screen session: codono"
-
-    # Start screen with a persistent interactive shell
-    screen -dmS codono /bin/bash -c "bash -i"
-
-    # Sleep to ensure session starts
+    
+    # Run this script inside the screen session
+    screen -dmS codono /bin/bash -c "$0"
+    
     sleep 1
 
-    # Confirm session creation
     if screen -list | grep -q "\.codono"; then
         log "Screen session 'codono' started successfully."
         log "Reattach using: screen -r codono"
@@ -53,6 +51,16 @@ if [ -z "$STY" ]; then
 
     exit 0
 fi
+
+# ✅ If inside the screen, the script execution continues normally
+log "Inside screen session. Running main script tasks..."
+
+# Your script logic continues here
+# Example: Run a command or loop
+while true; do
+    log "Screen session is active. Running tasks..."
+    sleep 10
+done
 
 # Function to load credentials from credentials.yml using yq if available
 load_credentials() {
