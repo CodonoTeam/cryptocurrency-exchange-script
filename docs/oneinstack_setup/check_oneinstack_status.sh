@@ -30,7 +30,7 @@ check_service() {
 # Check services
 check_service nginx
 check_service httpd
-check_service mariadb
+check_service mysqld  # Corrected for MariaDB
 check_service redis
 
 echo "------------------------------------------"
@@ -73,7 +73,7 @@ echo "Checking MySQL Connection:"
 echo "------------------------------------------"
 mysql -u root -p"$MYSQL_ROOT_PASSWORD" -e "SHOW DATABASES;" >/dev/null 2>&1
 if [ $? -eq 0 ]; then
-    echo "[✔] Successfully connected to MySQL"
+    echo "[✔] Successfully connected to MySQL (MariaDB)"
 else
     echo "[✘] MySQL connection failed"
 fi
@@ -81,14 +81,28 @@ fi
 echo "------------------------------------------"
 echo "Checking Logs for Errors:"
 echo "------------------------------------------"
-echo "Nginx Errors:"
-tail -n 5 /var/log/nginx/error.log
-echo "Apache Errors:"
-tail -n 5 /var/log/httpd/error_log
-echo "MariaDB Errors:"
-tail -n 5 /var/log/mariadb/mariadb.log
-echo "Redis Logs:"
-tail -n 5 /var/log/redis/redis-server.log
+
+# Function to check logs with fallback
+check_log() {
+    if [ -f "$1" ]; then
+        echo "$2:"
+        tail -n 5 "$1"
+    else
+        echo "[!] Log file $1 not found."
+    fi
+}
+
+# Updated log file locations based on your setup
+NGINX_LOG="/data/wwwlogs/error_nginx.log"
+APACHE_LOG="/data/wwwlogs/error_apache.log"
+MARIADB_LOG="/data/mariadb/mysql-error.log"
+REDIS_LOG="/usr/local/redis/var/redis.log"  # Updated Redis log path
+
+# Display last 5 log entries
+check_log "$NGINX_LOG" "Nginx Errors"
+check_log "$APACHE_LOG" "Apache Errors"
+check_log "$MARIADB_LOG" "MariaDB Errors"
+check_log "$REDIS_LOG" "Redis Logs"
 
 echo "=========================================="
 echo "  OneinStack Status Check Completed!"
