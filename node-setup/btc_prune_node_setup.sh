@@ -64,6 +64,7 @@ if ! command -v bitcoind &> /dev/null; then
 fi
 
 # Start temporary bitcoind to create wallet
+mkdir -p /root/.bitcoin
 echo "Starting temporary bitcoind to create 'default' wallet..."
 bitcoind -daemon -conf=/dev/null -rpcuser=$RPCUser -rpcpassword=$RPCPass -rpcport=$RPCPort -server=1 -datadir=/root/.bitcoin
 
