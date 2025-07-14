@@ -23,7 +23,7 @@ Explore the Universe of [Binance Clone](https://codono.com)
 
 [Cryptocurrency Nodes Setup Guide](node-setup/) for codono
 
-![Cryptocurrency Exchange Software](assets/Download-Cryptocurrency-Exchange-Script-Cryptocurrency-Exchange-Software.png?raw=true "Cryptocurrency Exchange Software")
+
 
 Elevate Your Trading with [Cryptocurrency Exchange Software](https://codono.com/download/)
 
@@ -80,7 +80,8 @@ For more information, visit [Codono's official website](https://codono.com).
 Discover your potential, redefine possibilities – Codono's White Label Blockchain Solution.
 
 
-![Crypto Deposit Withdrawal](assets/diagram_flow.png?raw=true "Crypto Deposit Withdrawal")
+<img src="assets/diagram_flow.png?raw=true" alt="Crypto Deposit Withdrawal" title="Crypto Deposit Withdrawal" width="50%">
+
 ## Crypto Exchange Script: Empowering Your Exchange Platform
 
 The Crypto Exchange Script is a versatile solution for building a comprehensive cryptocurrency exchange platform. It functions as a dynamic software development kit that integrates both public and private libraries, allowing for the seamless development of a cryptocurrency exchange. Built on blockchain technology and offered as an open-source platform, the Crypto Exchange Script empowers businesses to create their own private and white-label exchange solutions that cater to their specific customer base.
