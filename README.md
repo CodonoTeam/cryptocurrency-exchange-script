@@ -1,7 +1,7 @@
 
 ## Discover the Power of Codono's Cryptocurrency Exchange Script
 
-<img src="assets/crypto-exchange.webp?raw=true" alt="Cryptocurrency Exchange Script" title="Cryptocurrency Exchange Script" style="max-width:400px">
+<img src="assets/crypto-exchange-script-codono-software-1024x768.png?raw=true" alt="Cryptocurrency Exchange Script" title="Cryptocurrency Exchange Script" style="max-width:400px">
 
 
 Experience a Revolution in Crypto Trading with Codono's [Cryptocurrency Exchange Script](https://codono.com)
@@ -80,7 +80,7 @@ For more information, visit [Codono's official website](https://codono.com).
 Discover your potential, redefine possibilities – Codono's White Label Blockchain Solution.
 
 
-![Crypto Deposit Withdrawal](assets/deposit_withdrawal_troubleshooting_for_Evm.png?raw=true "Crypto Deposit Withdrawal")
+![Crypto Deposit Withdrawal](assets/diagram_flow.png?raw=true "Crypto Deposit Withdrawal")
 ## Crypto Exchange Script: Empowering Your Exchange Platform
 
 The Crypto Exchange Script is a versatile solution for building a comprehensive cryptocurrency exchange platform. It functions as a dynamic software development kit that integrates both public and private libraries, allowing for the seamless development of a cryptocurrency exchange. Built on blockchain technology and offered as an open-source platform, the Crypto Exchange Script empowers businesses to create their own private and white-label exchange solutions that cater to their specific customer base.
