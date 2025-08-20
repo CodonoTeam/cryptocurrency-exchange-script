@@ -91,7 +91,7 @@ EOF
 fi
 
 # Step 1: Install OneInStack
-cd /opt/ && wget -c http://mirrors.oneinstack.com/oneinstack-full.tar.gz && tar xzf oneinstack-full.tar.gz && ./oneinstack/install.sh --nginx_option 1 --apache --apache_mpm_option 1 --apache_mode_option 1 --php_option 9 --phpcache_option 1 --php_extensions fileinfo,redis,swoole --phpmyadmin --db_option 5 --dbinstallmethod 1 --dbrootpwd $MYSQL_NEW_ROOT_PASSWORD --redis --memcached 
+cd /opt/ && wget -c http://mirrors.oneinstack.com/oneinstack.tar.gz && tar xzf oneinstack.tar.gz && ./oneinstack/install.sh --nginx_option 1 --apache --apache_mpm_option 1 --apache_mode_option 1 --php_option 9 --phpcache_option 1 --php_extensions fileinfo,redis,swoole --phpmyadmin --db_option 5 --dbinstallmethod 1 --dbrootpwd $MYSQL_NEW_ROOT_PASSWORD --redis --memcached 
 
 # Step 2: Modify php.ini
 sed -i '/disable_functions/s/exec,//' /usr/local/php/etc/php.ini
