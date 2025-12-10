@@ -1,5 +1,5 @@
 *** Step 1
-First Upload your zip codono_unpack.zip to /opt folder of server
+First Upload your zip backend.zip to /opt folder of server
 You can use scp or upload using filezilla
 *** Step 2
 Run following
