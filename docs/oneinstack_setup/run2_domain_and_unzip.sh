@@ -17,9 +17,9 @@ else
 fi
 
 
-# Verify /opt/codono_unpack.zip exists
-if [ ! -f "/opt/codono_unpack.zip" ]; then
-    echo "/opt/codono_unpack.zip does not exist."
+# Verify /opt/backend.zip exists
+if [ ! -f "/opt/backend.zip" ]; then
+    echo "/opt/backend.zip does not exist."
     exit 1
 fi
 
@@ -29,9 +29,9 @@ if ! command -v unzip &> /dev/null; then
     sudo apt-get update && sudo apt-get install unzip -y
 fi
 
-# Unzip codono_unpack.zip
-echo "Unzipping /opt/codono_unpack.zip..."
-unzip /opt/codono_unpack.zip -d /data/wwwroot/ || { echo "Failed to unzip file."; exit 1; }
+# Unzip backend.zip
+echo "Unzipping /opt/backend.zip..."
+unzip /opt/backend.zip -d /data/wwwroot/ || { echo "Failed to unzip file."; exit 1; }
 
 # Add the domain to /opt/oneinstack/vhost.sh script [ run in subshell]
 echo "Adding domain to vhost.sh..."
