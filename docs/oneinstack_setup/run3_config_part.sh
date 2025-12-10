@@ -21,10 +21,10 @@ SITE_NAME=$(echo "${DOMAIN%%.*}" | awk '{print toupper(substr($0,1,1)) tolower(s
 
 
 # Verify required directories exist before moving contents
-if [[ -d "/data/wwwroot/${DOMAIN}" && -d "/data/wwwroot/codono_unpack/codebase" && -d "/data/wwwroot/codono_unpack/webserver" ]]; then
+if [[ -d "/data/wwwroot/${DOMAIN}" && -d "/data/wwwroot/backend/codebase" && -d "/data/wwwroot/backend/webserver" ]]; then
     echo "Moving files..."
-    mv /data/wwwroot/codono_unpack/codebase /data/wwwroot/ || { echo "Failed to move codebase directory."; exit 1; }
-    mv /data/wwwroot/codono_unpack/webserver/* /data/wwwroot/${DOMAIN}/ || { echo "Failed to move webserver files."; exit 1; }
+    mv /data/wwwroot/backend/codebase /data/wwwroot/ || { echo "Failed to move codebase directory."; exit 1; }
+    mv /data/wwwroot/backend/webserver/* /data/wwwroot/${DOMAIN}/ || { echo "Failed to move webserver files."; exit 1; }
     echo "Files have been moved successfully."
 else
     echo "One or more required directories do not exist."
