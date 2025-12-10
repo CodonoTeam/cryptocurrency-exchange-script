@@ -21,7 +21,7 @@ if [ "$DB_EXISTS" != "0" ]; then
 fi
 
 # Import SQL files into the database
-for SQL_FILE in /data/wwwroot/codono_unpack/*.sql; do
+for SQL_FILE in /data/wwwroot/backend/*.sql; do
     echo "Importing $SQL_FILE into $DB_NAME..."
     $MARIADB_BIN -uroot -p"$MYSQL_ROOT_PASSWORD" "$DB_NAME" < "$SQL_FILE"
 done
