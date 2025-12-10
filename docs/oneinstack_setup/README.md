@@ -22,7 +22,7 @@ chmod +x run7_show_admin_login.sh
 ```
 
 Step 3.
-Environment setup, make sure codono_unpack.zip was uploaded to /opt folder already.
+Environment setup, make sure backend.zip was uploaded to /opt folder already.
 ```
 cd /opt/
 ./run1_all_in_onestack_setup.sh
