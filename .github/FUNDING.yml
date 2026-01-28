@@ -1,0 +1,14 @@
+ethereum_payment_info:
+  address: "0xb6135acb77b20293f998ffd8e4c73c7d65426091"
+  currency: "ETH"
+  instructions: |
+    To send Ethereum (ETH) to this address, follow these steps:
+    1. Open your Ethereum wallet.
+    2. Choose the option to send ETH.
+    3. Enter this Ethereum address as the recipient: 0xb6135acb77b20293f998ffd8e4c73c7d65426091
+    4. Enter the amount of ETH you wish to send.
+    5. Review the transaction details and confirm the transaction.
+  note: |
+    Please ensure that you send only ETH to this address.
+    Transactions on the Ethereum blockchain are irreversible.
+    For any queries or issues, contact me at [your contact information].
