@@ -1,16 +1,16 @@
-# Cryptocurrency Exchange Script | Binance Clone | White Label Exchange
+# [Cryptocurrency Exchange Script](https://codono.com/solutions/crypto-exchange-script) | [Binance Clone](https://codono.com/solutions/binance-clone) | [White Label Exchange](https://codono.com/software/white-label-crypto-exchange)
 
 [![GitHub stars](https://img.shields.io/github/stars/CodonoTeam/cryptocurrency-exchange-script?style=social)](https://github.com/CodonoTeam/cryptocurrency-exchange-script/stargazers)
 [![License](https://img.shields.io/badge/License-Commercial-blue.svg)](https://codono.com/pricing/)
 [![Version](https://img.shields.io/badge/Version-7.5.5-green.svg)](changelog.md)
 [![PHP](https://img.shields.io/badge/PHP-8.1%2B-purple.svg)](https://php.net)
-[![Demo](https://img.shields.io/badge/Demo-Live-orange.svg)](https://demo.codono.com)
+[![Demo](https://img.shields.io/badge/Demo-Live-orange.svg)](https://codono.com/demo)
 
 <p align="center">
   <img src="assets/crypto-exchange-script-codono-software.webp" alt="Cryptocurrency Exchange Script" width="600">
 </p>
 
-**Launch your own cryptocurrency exchange in days, not months.** Codono is a complete, battle-tested exchange solution with 6+ years of development, trusted by exchanges worldwide.
+**Launch your own cryptocurrency exchange in days, not months.** Codono is a complete, battle-tested [crypto exchange software](https://codono.com/software/crypto-exchange) with 6+ years of development, trusted by exchanges worldwide.
 
 ---
 
@@ -31,9 +31,9 @@
 
 ## Premium Trading Modules
 
-### Perpetual Futures Trading
+### [Futures Trading Software](https://codono.com/software/futures-trading)
 
-Trade crypto with up to **125x leverage**. Enterprise-grade derivatives platform:
+Trade crypto with up to **125x leverage**. Enterprise-grade [futures trading platform](https://codono.com/solutions/futures-trading-platform):
 
 - Cross & Isolated margin modes
 - Mark price aggregated from 6 exchanges (manipulation resistant)
@@ -46,7 +46,7 @@ Trade crypto with up to **125x leverage**. Enterprise-grade derivatives platform
   <img src="assets/spot_trading_software.webp" alt="Perpetual Futures Trading" width="500">
 </p>
 
-### Margin Trading (Isolated)
+### [Margin Trading Software](https://codono.com/features/margin-trading) (Isolated)
 
 Leveraged spot trading with advanced risk management:
 
@@ -61,7 +61,7 @@ Leveraged spot trading with advanced risk management:
   <img src="assets/margin_trading.webp" alt="Margin Trading Platform" width="500">
 </p>
 
-### Forex Trading
+### [Forex Trading Software](https://codono.com/software/forex-trading)
 
 Professional forex trading module:
 
@@ -72,7 +72,7 @@ Professional forex trading module:
 - Multi-currency account support
 - TradingView charts integration
 
-### NFT Marketplace
+### [NFT Marketplace Software](https://codono.com/software/nft-marketplace)
 
 Full-featured NFT trading platform:
 
@@ -89,12 +89,12 @@ Full-featured NFT trading platform:
 
 | Module | Leverage | Settlement | Key Features |
 | ------ | -------- | ---------- | ------------ |
-| **Spot Trading** | 1x | Instant | Classic & Pro UI, real-time orderbook |
-| **Margin Trading** | Up to 20x | T+0 | Isolated positions, auto-liquidation |
-| **Perpetual Futures** | Up to 125x | Perpetual | Cross/Isolated margin, funding rates |
-| **Forex Trading** | Up to 100x | Real-time | 100+ pairs, spread management |
-| **P2P Trading** | 1x | Escrow | Peer-to-peer, multiple payment methods |
-| **NFT Marketplace** | - | Blockchain | Multi-chain, auctions, royalties |
+| **[Spot Trading](https://codono.com/features/spot-trading-exchange)** | 1x | Instant | Classic & Pro UI, real-time orderbook |
+| **[Margin Trading](https://codono.com/features/margin-trading)** | Up to 20x | T+0 | Isolated positions, auto-liquidation |
+| **[Perpetual Futures](https://codono.com/software/futures-trading)** | Up to 125x | Perpetual | Cross/Isolated margin, funding rates |
+| **[Forex Trading](https://codono.com/software/forex-trading)** | Up to 100x | Real-time | 100+ pairs, spread management |
+| **[P2P Trading](https://codono.com/software/p2p-crypto-exchange)** | 1x | Escrow | Peer-to-peer, multiple payment methods |
+| **[NFT Marketplace](https://codono.com/software/nft-marketplace)** | - | Blockchain | Multi-chain, auctions, royalties |
 
 ---
 
@@ -119,7 +119,7 @@ Or manual setup:
 
 **Average setup time: 30 minutes**
 
-[**Download Free Kit**](https://codono.com/download/) | [**View Live Demo**](https://demo.codono.com) | [**Setup Guide**](docs/oneinstack_setup/README.md)
+[**Download Free Kit**](https://codono.com/download/) | [**View Live Demo**](https://codono.com/demo) | [**Setup Guide**](docs/oneinstack_setup/README.md)
 
 ---
 
@@ -139,28 +139,28 @@ Or manual setup:
 
 | Feature | Description |
 | ------- | ----------- |
-| **Spot Trading** | Classic & Pro interfaces with real-time orderbook |
-| **P2P Trading** | Peer-to-peer with escrow protection |
+| **[Spot Trading Software](https://codono.com/features/spot-trading-exchange)** | Classic & Pro interfaces with real-time orderbook |
+| **[P2P Exchange Software](https://codono.com/software/p2p-crypto-exchange)** | Peer-to-peer with escrow protection |
 | **OTC Desk** | Large volume trades off-orderbook |
-| **ICO/IEO Launchpad** | Token sale platform with allocation system |
-| **Staking** | Flexible & locked staking with rewards |
+| **[Token Launchpad Software](https://codono.com/software/launchpad-software)** | Token sale platform with allocation system |
+| **[Staking Platform Software](https://codono.com/software/staking-platform)** | Flexible & locked staking with rewards |
 | **Mining Module** | Cloud mining with reward distribution |
-| **NFT Marketplace** | Create, buy, sell, auction NFTs |
-| **Mobile App** | iOS & Android native apps (Ionic) |
+| **[NFT Marketplace Software](https://codono.com/software/nft-marketplace)** | Create, buy, sell, auction NFTs |
+| **[Mobile Trading App](https://codono.com/software/mobile-trading-app)** | iOS & Android native apps (Ionic) |
 | **Easy Trade** | Simplified buy/sell for beginners |
 | **Voting** | Community token listing votes |
 | **Airdrop** | Token distribution campaigns |
 | **Faucet** | Free token claims for engagement |
 | **Leaderboard** | Trading competitions & rankings |
-| **API Integration** | Full REST API for trading bots |
+| **[API Integration](https://codono.com/features/api-integration)** | Full REST API for trading bots |
 
 [View All Features](https://codono.com/features/)
 
 ---
 
-## Admin Panel
+## [Admin Panel](https://codono.com/features/admin-dashboard)
 
-Full control over your exchange from a powerful admin dashboard:
+Full control over your exchange from a powerful [admin dashboard](https://codono.com/features/admin-dashboard):
 
 <p align="center">
   <img src="assets/admin_trading.webp" alt="Admin Dashboard" width="600">
@@ -168,10 +168,10 @@ Full control over your exchange from a powerful admin dashboard:
 
 ### User Management
 
-- KYC verification & document review
+- [KYC/AML verification](https://codono.com/features/kyc-aml-system) & document review
 - Account status control (active/suspended/banned)
 - Balance adjustments & transaction history
-- User activity logs & security monitoring
+- User activity logs & [security](https://codono.com/features/security) monitoring
 
 ### Trading Configuration
 
@@ -190,7 +190,7 @@ Full control over your exchange from a powerful admin dashboard:
 - Referral bonus tiers (3 levels)
 - Fee collection to designated accounts
 
-### Security Controls
+### [Security](https://codono.com/features/security) Controls
 
 - 2FA enforcement settings
 - IP whitelisting
@@ -263,7 +263,7 @@ Full control over your exchange from a powerful admin dashboard:
 - [Blockgum Integration](docs/blockgum-integration.md)
 - [CryptoApis.io Setup](docs/cryptoapis.io.setup.md)
 - [Binance Cross Trading](docs/binance-cross-trading-setup.md)
-- [WebSocket & Liquidity](docs/WebSocketConfigLiquidity.md)
+- [WebSocket & Liquidity](docs/WebSocketConfigLiquidity.md) | [Liquidity Engine](https://codono.com/features/liquidity-engine)
 - [Google Login Setup](docs/google-login-setup.md)
 - [Shuftipro KYC](docs/shuftipro-setup-requirements.md)
 
@@ -279,14 +279,14 @@ Full control over your exchange from a powerful admin dashboard:
 
 | Feature | Codono | Competitors |
 | ------- | ------ | ----------- |
-| **Source Code** | Full access | Encrypted/Obfuscated |
+| **Source Code** | [Full access](https://codono.com/solutions/self-hosted-crypto-exchange) | Encrypted/Obfuscated |
 | **Customization** | Unlimited | Limited |
 | **Supported Coins** | 2000+ | 10-50 |
-| **Mobile App** | Included | Extra cost |
-| **P2P Trading** | Included | Extra cost |
-| **Futures Trading** | Included | Extra cost |
-| **Margin Trading** | Included | Extra cost |
-| **NFT Marketplace** | Included | Extra cost |
+| **[Mobile App](https://codono.com/software/mobile-trading-app)** | Included | Extra cost |
+| **[P2P Trading](https://codono.com/software/p2p-crypto-exchange)** | Included | Extra cost |
+| **[Futures Trading](https://codono.com/software/futures-trading)** | Included | Extra cost |
+| **[Margin Trading](https://codono.com/features/margin-trading)** | Included | Extra cost |
+| **[NFT Marketplace](https://codono.com/software/nft-marketplace)** | Included | Extra cost |
 | **Payment Model** | One-time | Monthly subscription |
 | **Updates** | 1 year included | Extra cost |
 | **Support** | Telegram + Live Chat | Email only |
@@ -329,7 +329,7 @@ However, running your own nodes gives you more control and lower fees.
 <details>
 <summary><b>Is there a live demo I can try?</b></summary>
 
-Yes! Visit [demo.codono.com](https://demo.codono.com) to test all features including:
+Yes! Visit [codono.com/demo](https://codono.com/demo) to test all features including:
 
 - Spot trading
 - P2P marketplace
@@ -401,7 +401,7 @@ You're responsible for compliance with local regulations.
   <a href="https://codono.com/download/">
     <img src="https://img.shields.io/badge/Download%20Free%20Kit-Get%20Started-success?style=for-the-badge&logo=download" alt="Download">
   </a>
-  <a href="https://demo.codono.com">
+  <a href="https://codono.com/demo">
     <img src="https://img.shields.io/badge/View%20Live%20Demo-Try%20Now-blue?style=for-the-badge&logo=eye" alt="Demo">
   </a>
   <a href="https://codono.com/pricing/">
