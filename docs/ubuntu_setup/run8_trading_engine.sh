@@ -46,7 +46,7 @@ mkdir -p ${INSTALL_DIR}/logs
 
 # Download binary (~50MB)
 echo "Downloading trading engine binary from ${BINARY_URL}..."
-wget --timeout=120 --tries=3 -O "${INSTALL_DIR}/${BINARY_NAME}" "${BINARY_URL}"
+wget --timeout=120 --tries=3 --user-agent="Mozilla/5.0 (X11; Linux x86_64) Codono-Setup/1.0" -O "${INSTALL_DIR}/${BINARY_NAME}" "${BINARY_URL}"
 if [ $? -ne 0 ]; then
     echo "ERROR: Failed to download binary. Check the URL and network connection."
     rm -f "${INSTALL_DIR}/${BINARY_NAME}"
