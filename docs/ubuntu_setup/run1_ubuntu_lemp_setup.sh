@@ -8,9 +8,13 @@
 
 set -e
 
-# Prevent interactive prompts during apt operations (needrestart, debconf, etc.)
+# Prevent interactive prompts during apt operations
 export DEBIAN_FRONTEND=noninteractive
 export NEEDRESTART_MODE=a
+# needrestart ignores env vars when invoked via apt hooks — config file is reliable
+mkdir -p /etc/needrestart/conf.d
+echo "\$nrconf{restart} = 'a';" > /etc/needrestart/conf.d/99-codono.conf
+echo "\$nrconf{kernelhints} = 0;" >> /etc/needrestart/conf.d/99-codono.conf
 
 # Skip screen session if called from codono_init.sh (CODONO_NO_SCREEN=1)
 if [ "$CODONO_NO_SCREEN" != "1" ]; then

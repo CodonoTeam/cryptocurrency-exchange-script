@@ -7,6 +7,8 @@
 set -e
 export DEBIAN_FRONTEND=noninteractive
 export NEEDRESTART_MODE=a
+mkdir -p /etc/needrestart/conf.d 2>/dev/null
+printf '\$nrconf{restart} = '"'"'a'"'"';\n\$nrconf{kernelhints} = 0;\n' > /etc/needrestart/conf.d/99-codono.conf 2>/dev/null || true
 
 echo "=========================================="
 echo "  QUESTDB SETUP (Time-Series Database)   "
@@ -14,45 +16,43 @@ echo "  Required for: Fast price queries       "
 echo "=========================================="
 
 # QuestDB version
+# NOTE: Using -rt- (runtime) package which bundles its own Java — no external Java needed
 QUESTDB_VERSION="7.4.0"
+QUESTDB_DIR="questdb-${QUESTDB_VERSION}-rt-linux-amd64"
+QUESTDB_BASE="/opt/questdb"
+QUESTDB_DATA="${QUESTDB_BASE}/data"
 
-# Check if Java is installed (QuestDB requires Java 11+)
-if command -v java &> /dev/null; then
-    JAVA_VERSION=$(java -version 2>&1 | head -1 | cut -d'"' -f2)
-    echo "Java already installed: $JAVA_VERSION"
-else
-    echo "Installing OpenJDK 17..."
-    sudo apt-get update
-    sudo apt-get install -y openjdk-17-jre-headless
-fi
+# Stop existing QuestDB service if running (for re-runs)
+sudo systemctl stop questdb 2>/dev/null || true
 
 # Create QuestDB directory
 echo "Creating QuestDB installation directory..."
-sudo mkdir -p /opt/questdb
-cd /opt/questdb
+sudo mkdir -p "${QUESTDB_BASE}"
+cd "${QUESTDB_BASE}"
 
 # Check if QuestDB is already installed
-if [ -f "/opt/questdb/questdb-$QUESTDB_VERSION-rt-linux-amd64/bin/questdb.sh" ]; then
+if [ -f "${QUESTDB_BASE}/${QUESTDB_DIR}/bin/questdb.sh" ]; then
     echo "QuestDB $QUESTDB_VERSION already installed."
 else
     echo "Downloading QuestDB $QUESTDB_VERSION..."
-    wget -q "https://github.com/questdb/questdb/releases/download/$QUESTDB_VERSION/questdb-$QUESTDB_VERSION-rt-linux-amd64.tar.gz"
+    wget "https://github.com/questdb/questdb/releases/download/$QUESTDB_VERSION/questdb-$QUESTDB_VERSION-rt-linux-amd64.tar.gz"
 
     echo "Extracting QuestDB..."
     tar -xzf "questdb-$QUESTDB_VERSION-rt-linux-amd64.tar.gz"
     rm "questdb-$QUESTDB_VERSION-rt-linux-amd64.tar.gz"
 fi
 
-# Create data directory
-sudo mkdir -p /opt/questdb/data
-
-# Set permissions (www-data instead of www)
-sudo chown -R www-data:www-data /opt/questdb
+# Create all data subdirectories QuestDB needs
+echo "Creating data directories..."
+sudo mkdir -p "${QUESTDB_DATA}/conf"
+sudo mkdir -p "${QUESTDB_DATA}/db"
+sudo mkdir -p "${QUESTDB_DATA}/log"
+sudo mkdir -p "${QUESTDB_DATA}/import"
+sudo mkdir -p "${QUESTDB_DATA}/public"
 
 # Create QuestDB configuration
 echo "Creating QuestDB configuration..."
-mkdir -p /opt/questdb/data/conf
-cat > /opt/questdb/data/conf/server.conf << 'EOF'
+cat > "${QUESTDB_DATA}/conf/server.conf" << 'EOF'
 # QuestDB Server Configuration
 
 # HTTP server settings
@@ -75,9 +75,14 @@ shared.worker.count=2
 cairo.writer.command.queue.capacity=64
 EOF
 
-# Create systemd service (www-data instead of www)
+# Set permissions AFTER all files/directories are created
+# This ensures www-data owns everything including conf/server.conf
+echo "Setting permissions..."
+sudo chown -R www-data:www-data "${QUESTDB_BASE}"
+
+# Create systemd service
 echo "Creating systemd service..."
-sudo cat > /etc/systemd/system/questdb.service << EOF
+cat > /etc/systemd/system/questdb.service << SERVICEEOF
 [Unit]
 Description=QuestDB Time-Series Database
 After=network.target
@@ -86,17 +91,18 @@ After=network.target
 Type=forking
 User=www-data
 Group=www-data
-WorkingDirectory=/opt/questdb/questdb-$QUESTDB_VERSION-rt-linux-amd64
-ExecStart=/opt/questdb/questdb-$QUESTDB_VERSION-rt-linux-amd64/bin/questdb.sh start -d /opt/questdb/data
-ExecStop=/opt/questdb/questdb-$QUESTDB_VERSION-rt-linux-amd64/bin/questdb.sh stop
+WorkingDirectory=${QUESTDB_BASE}/${QUESTDB_DIR}
+ExecStart=${QUESTDB_BASE}/${QUESTDB_DIR}/bin/questdb.sh start -d ${QUESTDB_DATA}
+ExecStop=${QUESTDB_BASE}/${QUESTDB_DIR}/bin/questdb.sh stop -d ${QUESTDB_DATA}
 Restart=on-failure
 RestartSec=10
+LimitNOFILE=65535
 StandardOutput=journal
 StandardError=journal
 
 [Install]
 WantedBy=multi-user.target
-EOF
+SERVICEEOF
 
 # Reload systemd
 sudo systemctl daemon-reload
@@ -110,40 +116,63 @@ sudo systemctl start questdb
 echo "Waiting for QuestDB to initialize..."
 sleep 10
 
-# Check if QuestDB is running
-if curl -s "http://localhost:9000/exec?query=SELECT%201" > /dev/null 2>&1; then
-    echo "QuestDB is running!"
-else
-    echo "Waiting for QuestDB to fully start..."
-    sleep 10
+# Check if QuestDB is running (retry up to 3 times)
+RETRIES=3
+RUNNING=false
+for i in $(seq 1 $RETRIES); do
+    if curl -s "http://localhost:9000/exec?query=SELECT%201" > /dev/null 2>&1; then
+        echo "QuestDB is running!"
+        RUNNING=true
+        break
+    else
+        echo "Waiting for QuestDB to fully start... (attempt $i/$RETRIES)"
+        sleep 10
+    fi
+done
+
+if [ "$RUNNING" = false ]; then
+    echo ""
+    echo "WARNING: QuestDB may not have started correctly."
+    echo "Check logs with: sudo journalctl -u questdb -n 50"
+    echo "Check status with: sudo systemctl status questdb"
+    echo ""
+    # Don't exit — continue to show info, user can debug
 fi
 
-# Create mark_prices table
-echo "Creating mark_prices table..."
-curl -G --data-urlencode "query=CREATE TABLE IF NOT EXISTS mark_prices (
-    symbol SYMBOL,
-    mark_price DOUBLE,
-    index_price DOUBLE,
-    source STRING,
-    timestamp TIMESTAMP
-) TIMESTAMP(timestamp) PARTITION BY DAY;" \
-"http://localhost:9000/exec" 2>/dev/null
+if [ "$RUNNING" = true ]; then
+    # Create mark_prices table
+    echo "Creating mark_prices table..."
+    curl -G --data-urlencode "query=CREATE TABLE IF NOT EXISTS mark_prices (
+        symbol SYMBOL,
+        mark_price DOUBLE,
+        index_price DOUBLE,
+        source STRING,
+        timestamp TIMESTAMP
+    ) TIMESTAMP(timestamp) PARTITION BY DAY;" \
+    "http://localhost:9000/exec" 2>/dev/null
 
-# Create forex_ticks table (for forex trading module)
-echo "Creating forex_ticks table..."
-curl -G --data-urlencode "query=CREATE TABLE IF NOT EXISTS forex_ticks (
-    symbol SYMBOL,
-    bid DOUBLE,
-    ask DOUBLE,
-    source STRING,
-    timestamp TIMESTAMP
-) TIMESTAMP(timestamp) PARTITION BY DAY;" \
-"http://localhost:9000/exec" 2>/dev/null
+    # Create forex_ticks table (for forex trading module)
+    echo "Creating forex_ticks table..."
+    curl -G --data-urlencode "query=CREATE TABLE IF NOT EXISTS forex_ticks (
+        symbol SYMBOL,
+        bid DOUBLE,
+        ask DOUBLE,
+        source STRING,
+        timestamp TIMESTAMP
+    ) TIMESTAMP(timestamp) PARTITION BY DAY;" \
+    "http://localhost:9000/exec" 2>/dev/null
 
-# Verify tables created
-echo ""
-echo "Verifying tables..."
-curl -s "http://localhost:9000/exec?query=SHOW%20TABLES" | head -20
+    # Verify tables created
+    echo ""
+    echo "Verifying tables..."
+    curl -s "http://localhost:9000/exec?query=SHOW%20TABLES"
+else
+    echo "Skipping table creation — QuestDB is not running."
+    echo "After fixing the issue, create tables manually:"
+    echo "  sudo systemctl start questdb && sleep 10"
+    echo "  curl -G --data-urlencode \"query=CREATE TABLE IF NOT EXISTS mark_prices (symbol SYMBOL, mark_price DOUBLE, index_price DOUBLE, source STRING, timestamp TIMESTAMP) TIMESTAMP(timestamp) PARTITION BY DAY;\" http://localhost:9000/exec"
+    echo "  curl -G --data-urlencode \"query=CREATE TABLE IF NOT EXISTS forex_ticks (symbol SYMBOL, bid DOUBLE, ask DOUBLE, source STRING, timestamp TIMESTAMP) TIMESTAMP(timestamp) PARTITION BY DAY;\" http://localhost:9000/exec"
+fi
 
 # Get server status
 echo ""

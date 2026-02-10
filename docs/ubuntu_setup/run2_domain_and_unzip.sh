@@ -8,6 +8,8 @@
 set -e
 export DEBIAN_FRONTEND=noninteractive
 export NEEDRESTART_MODE=a
+mkdir -p /etc/needrestart/conf.d 2>/dev/null
+printf '\$nrconf{restart} = '"'"'a'"'"';\n\$nrconf{kernelhints} = 0;\n' > /etc/needrestart/conf.d/99-codono.conf 2>/dev/null || true
 
 # Verify /opt/credentials.yml exists
 if [ ! -f "/opt/credentials.yml" ]; then
