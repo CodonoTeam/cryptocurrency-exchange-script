@@ -69,6 +69,18 @@ else
     echo "[--] QuestDB not installed or not running"
 fi
 
+# Check UFW Firewall
+if command -v ufw &> /dev/null; then
+    UFW_STATUS=$(ufw status 2>/dev/null | head -1)
+    if echo "$UFW_STATUS" | grep -q "active"; then
+        echo "[OK] UFW firewall is active"
+    else
+        echo "[FAIL] UFW firewall is inactive"
+    fi
+else
+    echo "[--] UFW not installed"
+fi
+
 echo ""
 echo "------------------------------------------"
 echo "Software Versions:"

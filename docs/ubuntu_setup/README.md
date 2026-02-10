@@ -35,6 +35,7 @@ wget https://raw.githubusercontent.com/CodonoTeam/cryptocurrency-exchange-script
 wget https://raw.githubusercontent.com/CodonoTeam/cryptocurrency-exchange-script/main/docs/ubuntu_setup/run7_show_admin_login.sh && \
 wget https://raw.githubusercontent.com/CodonoTeam/cryptocurrency-exchange-script/main/docs/ubuntu_setup/run8_trading_engine.sh && \
 wget https://raw.githubusercontent.com/CodonoTeam/cryptocurrency-exchange-script/main/docs/ubuntu_setup/run9_questdb.sh && \
+wget https://raw.githubusercontent.com/CodonoTeam/cryptocurrency-exchange-script/main/docs/ubuntu_setup/run10_firewall.sh && \
 wget https://raw.githubusercontent.com/CodonoTeam/cryptocurrency-exchange-script/main/docs/ubuntu_setup/check_ubuntu_status.sh && \
 chmod +x *.sh
 ```
@@ -151,9 +152,21 @@ sudo bash run9_questdb.sh
 
 Required for high-performance **mark price queries** and **forex tick storage**.
 
-- Installs Java 17 and QuestDB 7.4.0
+- Installs QuestDB 7.4.0 (includes bundled Java runtime)
 - Creates `mark_prices` and `forex_ticks` tables
 - Installs systemd service (`questdb.service`)
+- All ports bound to `127.0.0.1` (not accessible externally)
+
+### Step 10: Firewall (Recommended)
+
+```bash
+sudo bash run10_firewall.sh
+```
+
+Configures UFW firewall:
+
+- **Allows:** SSH (22), HTTP (80), HTTPS (443)
+- **Blocks:** All other incoming traffic (MariaDB, Redis, Memcached, QuestDB, internal WebSocket ports)
 
 ## Health Check
 

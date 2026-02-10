@@ -730,11 +730,51 @@ setup_ssl() {
 }
 
 # ============================================
+# SETUP UFW FIREWALL
+# ============================================
+
+setup_firewall() {
+    print_step "10" "Configuring UFW Firewall"
+
+    # Install UFW if not present
+    if ! command -v ufw &> /dev/null; then
+        print_info "Installing UFW..."
+        apt-get install -y ufw
+    fi
+
+    # Reset and configure
+    ufw --force reset > /dev/null 2>&1
+    ufw default deny incoming > /dev/null 2>&1
+    ufw default allow outgoing > /dev/null 2>&1
+
+    # Allow public ports
+    ufw allow 22/tcp > /dev/null 2>&1   # SSH
+    ufw allow 80/tcp > /dev/null 2>&1   # HTTP
+    ufw allow 443/tcp > /dev/null 2>&1  # HTTPS
+
+    # Explicitly deny internal ports (defense-in-depth)
+    ufw deny 3306/tcp > /dev/null 2>&1  # MariaDB
+    ufw deny 6379/tcp > /dev/null 2>&1  # Redis
+    ufw deny 11211/tcp > /dev/null 2>&1 # Memcached
+    ufw deny 7272/tcp > /dev/null 2>&1  # SocketBot
+    ufw deny 8081/tcp > /dev/null 2>&1  # Trading Engine WS
+    ufw deny 8082/tcp > /dev/null 2>&1  # Trading Engine Dashboard
+    ufw deny 8812/tcp > /dev/null 2>&1  # QuestDB PG
+    ufw deny 9000/tcp > /dev/null 2>&1  # QuestDB HTTP
+    ufw deny 9009/tcp > /dev/null 2>&1  # QuestDB InfluxDB
+
+    # Enable UFW
+    ufw --force enable > /dev/null 2>&1
+
+    print_success "UFW firewall enabled — allowed: SSH(22), HTTP(80), HTTPS(443)"
+}
+
+# ============================================
 # SHOW FINAL SUMMARY
 # ============================================
 
 show_summary() {
-    print_step "10" "Installation Complete!"
+    print_step "11" "Installation Complete!"
 
     echo -e "\n${GREEN}"
     echo "╔══════════════════════════════════════════════════════════════╗"
@@ -801,6 +841,7 @@ show_summary() {
     echo "  Trading Engine:  systemctl status trading-engine"
     echo "  QuestDB:         systemctl status questdb"
     echo "  Socketbot:       supervisorctl status socketbot"
+    echo "  Firewall:        ufw status"
     echo ""
 
     echo -e "${GREEN}Thank you for choosing Codono!${NC}"
@@ -837,6 +878,7 @@ main() {
     configure_nginx_websockets
     update_trading_engine_env
     setup_ssl
+    setup_firewall
 
     # Final summary
     show_summary

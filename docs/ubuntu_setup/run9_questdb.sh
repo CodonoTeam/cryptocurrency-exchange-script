@@ -55,19 +55,19 @@ echo "Creating QuestDB configuration..."
 cat > "${QUESTDB_DATA}/conf/server.conf" << 'EOF'
 # QuestDB Server Configuration
 
-# HTTP server settings
-http.bind.to=0.0.0.0:9000
+# HTTP server settings (localhost only — not exposed externally)
+http.bind.to=127.0.0.1:9000
 http.enabled=true
 
-# PostgreSQL wire protocol settings
+# PostgreSQL wire protocol settings (localhost only)
 pg.enabled=true
-pg.bind.to=0.0.0.0:8812
+pg.bind.to=127.0.0.1:8812
 pg.user=admin
 pg.password=quest
 
-# InfluxDB line protocol settings
+# InfluxDB line protocol settings (localhost only)
 line.tcp.enabled=true
-line.tcp.bind.to=0.0.0.0:9009
+line.tcp.bind.to=127.0.0.1:9009
 
 # Performance settings
 cairo.sql.copy.root=/opt/questdb/data/import
@@ -180,11 +180,11 @@ echo "=========================================="
 echo "  QuestDB Setup Complete!                "
 echo "=========================================="
 echo ""
-echo "Service Details:"
-echo "  - HTTP API: http://localhost:9000"
-echo "  - Web Console: http://YOUR_IP:9000"
-echo "  - PostgreSQL: localhost:8812"
-echo "  - InfluxDB Line: localhost:9009"
+echo "Service Details (all bound to localhost only):"
+echo "  - HTTP API: http://127.0.0.1:9000"
+echo "  - Web Console: http://127.0.0.1:9000 (SSH tunnel required for remote access)"
+echo "  - PostgreSQL: 127.0.0.1:8812"
+echo "  - InfluxDB Line: 127.0.0.1:9009"
 echo ""
 echo "Credentials (PostgreSQL):"
 echo "  - User: admin"
@@ -203,8 +203,7 @@ echo "Test Query:"
 echo "  curl 'http://localhost:9000/exec?query=SELECT%20*%20FROM%20mark_prices%20LIMIT%205'"
 echo ""
 
-# Security note
-echo "SECURITY NOTE:"
-echo "  For production, restrict access to ports 9000 and 8812"
-echo "  using firewall rules (only allow from localhost/internal IPs)"
+echo "NOTE: All ports are bound to 127.0.0.1 (not accessible externally)."
+echo "To access the web console remotely, use SSH tunnel:"
+echo "  ssh -L 9000:127.0.0.1:9000 user@your-server"
 echo ""
