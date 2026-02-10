@@ -10,6 +10,8 @@
 # ============================================
 
 set -e
+export DEBIAN_FRONTEND=noninteractive
+export NEEDRESTART_MODE=a
 
 # Colors for output
 RED='\033[0;31m'

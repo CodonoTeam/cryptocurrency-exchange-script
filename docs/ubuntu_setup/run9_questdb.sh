@@ -5,6 +5,8 @@
 # ============================================
 
 set -e
+export DEBIAN_FRONTEND=noninteractive
+export NEEDRESTART_MODE=a
 
 echo "=========================================="
 echo "  QUESTDB SETUP (Time-Series Database)   "

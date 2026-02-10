@@ -44,14 +44,25 @@ echo "Creating installation directory..."
 mkdir -p ${INSTALL_DIR}
 mkdir -p ${INSTALL_DIR}/logs
 
-# Download binary
-echo "Downloading trading engine binary..."
-if wget -q --show-progress -O "${INSTALL_DIR}/${BINARY_NAME}" "${BINARY_URL}"; then
-    echo "Binary downloaded successfully."
-else
-    echo "ERROR: Failed to download binary from ${BINARY_URL}"
+# Download binary (~50MB)
+echo "Downloading trading engine binary from ${BINARY_URL}..."
+wget --timeout=120 --tries=3 -O "${INSTALL_DIR}/${BINARY_NAME}" "${BINARY_URL}"
+if [ $? -ne 0 ]; then
+    echo "ERROR: Failed to download binary. Check the URL and network connection."
+    rm -f "${INSTALL_DIR}/${BINARY_NAME}"
     exit 1
 fi
+
+# Verify download is not empty/truncated
+FILE_SIZE=$(stat -c%s "${INSTALL_DIR}/${BINARY_NAME}" 2>/dev/null || echo "0")
+if [ "$FILE_SIZE" -lt 1000000 ]; then
+    echo "ERROR: Downloaded file is too small (${FILE_SIZE} bytes). Expected ~50MB."
+    echo "The download may have failed or returned an error page."
+    rm -f "${INSTALL_DIR}/${BINARY_NAME}"
+    exit 1
+fi
+
+echo "Binary downloaded successfully (${FILE_SIZE} bytes)."
 chmod +x "${INSTALL_DIR}/${BINARY_NAME}"
 
 # Create comprehensive .env configuration

@@ -6,6 +6,8 @@
 # ============================================
 
 set -e
+export DEBIAN_FRONTEND=noninteractive
+export NEEDRESTART_MODE=a
 
 # Path to credentials and configuration
 CREDENTIALS_FILE="/opt/credentials.yml"

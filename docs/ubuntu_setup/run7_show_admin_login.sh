@@ -5,6 +5,9 @@
 # Displays admin URL, credentials, and 2FA QR code
 # ============================================
 
+export DEBIAN_FRONTEND=noninteractive
+export NEEDRESTART_MODE=a
+
 # Define the path to the credentials file
 CREDENTIALS_FILE="/opt/credentials.yml"
 

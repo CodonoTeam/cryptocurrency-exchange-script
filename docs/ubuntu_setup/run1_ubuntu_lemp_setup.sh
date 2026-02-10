@@ -8,6 +8,10 @@
 
 set -e
 
+# Prevent interactive prompts during apt operations (needrestart, debconf, etc.)
+export DEBIAN_FRONTEND=noninteractive
+export NEEDRESTART_MODE=a
+
 # Skip screen session if called from codono_init.sh (CODONO_NO_SCREEN=1)
 if [ "$CODONO_NO_SCREEN" != "1" ]; then
     # Check if 'screen' is installed, if not then install it

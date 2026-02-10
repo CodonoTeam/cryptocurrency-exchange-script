@@ -6,6 +6,8 @@
 # ============================================
 
 set -e
+export DEBIAN_FRONTEND=noninteractive
+export NEEDRESTART_MODE=a
 
 # Verify /opt/credentials.yml exists
 if [ ! -f "/opt/credentials.yml" ]; then
