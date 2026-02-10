@@ -7,13 +7,46 @@ Setup scripts for deploying Codono Exchange on Ubuntu 22.04 / 24.04 using standa
 - **OS:** Ubuntu 22.04 LTS or 24.04 LTS (64-bit)
 - **RAM:** Minimum 2 GB (4 GB recommended)
 - **Access:** Root or sudo privileges
-- **Files:** `backend.zip` uploaded to `/opt/backend.zip`
+- **Files:** `backend.zip` from your Codono account
+
+## Getting Started
+
+### Step 0a: Upload Backend
+
+Upload your `backend.zip` to the `/opt/` folder on your server:
+
+```bash
+# Using SCP from your local machine
+scp backend.zip root@YOUR_SERVER_IP:/opt/
+
+# Or use FileZilla / WinSCP to upload to /opt/
+```
+
+### Step 0b: Download Setup Scripts
+
+```bash
+cd /opt/ && \
+wget https://raw.githubusercontent.com/CodonoTeam/cryptocurrency-exchange-script/main/docs/ubuntu_setup/run1_ubuntu_lemp_setup.sh && \
+wget https://raw.githubusercontent.com/CodonoTeam/cryptocurrency-exchange-script/main/docs/ubuntu_setup/run2_domain_and_unzip.sh && \
+wget https://raw.githubusercontent.com/CodonoTeam/cryptocurrency-exchange-script/main/docs/ubuntu_setup/run3_config_part.sh && \
+wget https://raw.githubusercontent.com/CodonoTeam/cryptocurrency-exchange-script/main/docs/ubuntu_setup/run4_db_create_and_import.sh && \
+wget https://raw.githubusercontent.com/CodonoTeam/cryptocurrency-exchange-script/main/docs/ubuntu_setup/run5_websocket.sh && \
+wget https://raw.githubusercontent.com/CodonoTeam/cryptocurrency-exchange-script/main/docs/ubuntu_setup/run6_cron_setup.sh && \
+wget https://raw.githubusercontent.com/CodonoTeam/cryptocurrency-exchange-script/main/docs/ubuntu_setup/run7_show_admin_login.sh && \
+wget https://raw.githubusercontent.com/CodonoTeam/cryptocurrency-exchange-script/main/docs/ubuntu_setup/run8_trading_engine.sh && \
+wget https://raw.githubusercontent.com/CodonoTeam/cryptocurrency-exchange-script/main/docs/ubuntu_setup/run9_questdb.sh && \
+wget https://raw.githubusercontent.com/CodonoTeam/cryptocurrency-exchange-script/main/docs/ubuntu_setup/check_ubuntu_status.sh && \
+chmod +x *.sh
+```
 
 ## Quick Start (Automated)
 
 For a fully automated setup, use the master orchestrator:
 
 ```bash
+cd /opt/ && \
+wget https://raw.githubusercontent.com/CodonoTeam/cryptocurrency-exchange-script/main/docs/ubuntu_setup/codono_init.sh && \
+chmod +x codono_init.sh && \
 sudo bash codono_init.sh
 ```
 
@@ -21,7 +54,7 @@ This will guide you through domain setup, license verification, credential gener
 
 ## Manual Setup (Step by Step)
 
-Run each script in order. All scripts must be executed as root.
+Run each script in order from `/opt/`. All scripts must be executed as root.
 
 ### Step 1: Install LEMP Stack
 
