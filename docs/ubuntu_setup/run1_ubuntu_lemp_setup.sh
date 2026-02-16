@@ -2,46 +2,39 @@
 
 # ============================================
 # Codono Exchange - Ubuntu LEMP Stack Setup
-# Replaces OneInStack with standard apt packages
 # Supports: Ubuntu 22.04, 24.04
 # ============================================
 
 set -e
 
-# Prevent interactive prompts during apt operations
 export DEBIAN_FRONTEND=noninteractive
 export NEEDRESTART_MODE=a
-# needrestart ignores env vars when invoked via apt hooks — config file is reliable
+
 mkdir -p /etc/needrestart/conf.d
 echo "\$nrconf{restart} = 'a';" > /etc/needrestart/conf.d/99-codono.conf
 echo "\$nrconf{kernelhints} = 0;" >> /etc/needrestart/conf.d/99-codono.conf
 
-# Skip screen session if called from codono_init.sh (CODONO_NO_SCREEN=1)
+# --------------------------------------------
+# SCREEN HANDLING
+# --------------------------------------------
 if [ "$CODONO_NO_SCREEN" != "1" ]; then
-    # Check if 'screen' is installed, if not then install it
     if ! command -v screen &> /dev/null; then
-        echo "'screen' is not installed. Attempting to install..."
-        sudo apt-get update && sudo apt-get install -y screen
-        if [ $? -eq 0 ]; then
-            echo "'screen' successfully installed."
-        else
-            echo "Failed to install 'screen'. Exiting."
-            exit 1
-        fi
+        apt-get update && apt-get install -y screen
     fi
 
-    # Check if inside a screen session. If not, start a new screen session to run this script.
     if [ -z "$STY" ]; then
         screen -dm -S codono /bin/bash "$0"
-        echo "Started setup in a screen session named codono. This process can take 5-10 mins. You can reattach with 'screen -r codono'."
+        echo "Started setup in screen session 'codono'. Reattach using: screen -r codono"
         exit
     fi
 fi
 
-# Check if credentials.yml exists
+# --------------------------------------------
+# LOAD OR GENERATE CREDENTIALS
+# --------------------------------------------
 if [ -f /opt/credentials.yml ]; then
     echo "credentials.yml already exists. Using existing credentials."
-    # Load existing credentials
+
     HTACCESS_USERNAME=$(grep 'HTACCESS_USERNAME' /opt/credentials.yml | awk '{print $2}')
     HTACCESS_PASSWORD=$(grep 'HTACCESS_PASSWORD' /opt/credentials.yml | awk '{print $2}')
     REDIS_PASSWORD=$(grep 'REDIS_PASSWORD' /opt/credentials.yml | awk '{print $2}')
@@ -54,33 +47,83 @@ if [ -f /opt/credentials.yml ]; then
     TWO_FA_SECRET_KEY=$(grep 'TWO_FA_SECRET_KEY' /opt/credentials.yml | awk '{print $2}')
     domain=$(grep '^DOMAIN' /opt/credentials.yml | awk '{print $2}')
     frontend_domain=$(grep 'FRONTEND_DOMAIN' /opt/credentials.yml | awk '{print $2}')
+
 else
-    # Prompt user for domain name input
-    read -p "Please input domain (example: myexchange.com): " user_domain
-    user_domain=${user_domain,,} # Convert to lowercase
 
-    # Clean the input: remove https://, http://, www, and trailing slashes
-    user_domain=$(echo "$user_domain" | sed -e 's/^https:\/\///' -e 's/^http:\/\///' -e 's/^www\.//' -e 's/\/$//')
+    # --------------------------------------------
+    # SMART DOMAIN INPUT SECTION
+    # --------------------------------------------
 
-    # Derive both domains from user input
+    read -p "Enter frontend domain (example: myexchange.com or demo.myexchange.com): " user_domain
+    user_domain=${user_domain,,}
+
+    user_domain=$(echo "$user_domain" | sed -e 's/^https:\/\///' \
+                                             -e 's/^http:\/\///' \
+                                             -e 's/^www\.//' \
+                                             -e 's/\/$//')
+
+    if [ -z "$user_domain" ]; then
+        echo "Domain cannot be empty."
+        exit 1
+    fi
+
+    if ! [[ "$user_domain" =~ ^[a-z0-9.-]+\.[a-z]{2,}$ ]]; then
+        echo "Invalid domain format."
+        exit 1
+    fi
+
     frontend_domain="$user_domain"
-    domain="api.${user_domain}"
 
-    echo "API Domain (backend): $domain"
+    segment_count=$(echo "$user_domain" | awk -F. '{print NF}')
+    root_domain=$(echo "$user_domain" | awk -F. '{print $(NF-1)"."$NF}')
+
+    if [ "$segment_count" -eq 2 ]; then
+        suggested_api="api.${user_domain}"
+    else
+        suggested_api="api.${root_domain}"
+    fi
+
+    echo ""
     echo "Frontend Domain: $frontend_domain"
+    echo "Suggested API Domain: $suggested_api"
+    echo ""
 
-    # Generate random credentials
+    read -p "Press Enter to accept suggested API domain or type custom API domain: " custom_api
+
+    if [ -z "$custom_api" ]; then
+        domain="$suggested_api"
+    else
+        custom_api=${custom_api,,}
+        custom_api=$(echo "$custom_api" | sed -e 's/^https:\/\///' \
+                                               -e 's/^http:\/\///' \
+                                               -e 's/\/$//')
+
+        if ! [[ "$custom_api" =~ ^[a-z0-9.-]+\.[a-z]{2,}$ ]]; then
+            echo "Invalid API domain format."
+            exit 1
+        fi
+
+        domain="$custom_api"
+    fi
+
+    echo ""
+    echo "Final Setup:"
+    echo "Frontend: $frontend_domain"
+    echo "API: $domain"
+    echo ""
+
+    # --------------------------------------------
+    # GENERATE CREDENTIALS
+    # --------------------------------------------
+
     generate_password() {
-        local length=$1
-        tr -dc A-Za-z0-9 </dev/urandom | head -c ${length} ; echo ''
-    }
-    generate_2fa_secret_key() {
-        local random_bytes=$(openssl rand 10)
-        local secret_key=$(echo -n "$random_bytes" | base32 | tr -d '=')
-        echo "$secret_key"
+        tr -dc A-Za-z0-9 </dev/urandom | head -c $1 ; echo ''
     }
 
-    # Generating credentials with prefixes
+    generate_2fa_secret_key() {
+        openssl rand -base64 10 | tr -dc A-Z2-7 | head -c 16
+    }
+
     HTACCESS_USERNAME="HU_$(generate_password 16)"
     HTACCESS_PASSWORD="HP_$(generate_password 32)"
     REDIS_PASSWORD="$(generate_password 16)"
@@ -92,9 +135,7 @@ else
     ADMIN_PASS="AP_$(generate_password 40)"
     TWO_FA_SECRET_KEY=$(generate_2fa_secret_key)
 
-    cd /opt/
-    # Save credentials to YAML file
-    cat <<EOF >credentials.yml
+    cat <<EOF > /opt/credentials.yml
 HTACCESS_USERNAME: $HTACCESS_USERNAME
 HTACCESS_PASSWORD: $HTACCESS_PASSWORD
 REDIS_PASSWORD: $REDIS_PASSWORD
@@ -108,8 +149,9 @@ TWO_FA_SECRET_KEY: $TWO_FA_SECRET_KEY
 DOMAIN: $domain
 FRONTEND_DOMAIN: $frontend_domain
 EOF
+
     chmod 600 /opt/credentials.yml
-    echo "Credentials have been saved to /opt/credentials.yml"
+    echo "Credentials saved to /opt/credentials.yml"
 fi
 
 # Step 1: Add Ondrej PPA for PHP 7.4
