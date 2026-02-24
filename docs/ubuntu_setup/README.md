@@ -1,13 +1,13 @@
 # Codono Exchange - Ubuntu Server Setup
 
-Setup scripts for deploying Codono Exchange on Ubuntu 22.04 / 24.04 using standard `apt` packages.
+Setup scripts for deploying [Codono Cryptocurrency Exchange Software](https://codono.com/software/crypto-exchange) on Ubuntu 22.04 / 24.04 using standard `apt` packages.
 
 ## Prerequisites
 
 - **OS:** Ubuntu 22.04 LTS or 24.04 LTS (64-bit)
 - **RAM:** Minimum 2 GB (4 GB recommended)
 - **Access:** Root or sudo privileges
-- **Files:** `backend.zip` from your Codono account
+- **Files:** `backend.zip` from your [Codono account](https://codono.com/download)
 
 ## Getting Started
 
@@ -40,15 +40,10 @@ wget https://raw.githubusercontent.com/CodonoTeam/cryptocurrency-exchange-script
 chmod +x *.sh
 ```
 
-## Quick Start (Automated)
-
-For a fully automated setup, use the master orchestrator:
+## Quick Start (One-Line Install)
 
 ```bash
-cd /opt/ && \
-wget https://raw.githubusercontent.com/CodonoTeam/cryptocurrency-exchange-script/main/docs/ubuntu_setup/codono_init.sh && \
-chmod +x codono_init.sh && \
-sudo bash codono_init.sh
+curl -sSL https://raw.githubusercontent.com/CodonoTeam/cryptocurrency-exchange-script/main/docs/ubuntu_setup/codono_init.sh | bash
 ```
 
 This will guide you through domain setup, license verification, credential generation, and run all scripts in sequence.
@@ -111,8 +106,8 @@ sudo bash run5_websocket.sh
 ```
 
 - Installs Supervisor for the PHP socket bot (port 7272)
-- Adds Nginx reverse proxy for `/wsocket` (port 7272) and `/engine` (port 8081)
-- Configures WebSocket URL in `other_config.php`
+- Adds Nginx reverse proxy for WebSocket connections: `/wsocket` (port 7272) and `/engine` (port 8081)
+- Configures WebSocket URL in `other_config.php` — powers [real-time trading](https://codono.com/features/spot-trading-exchange) and orderbook updates
 
 ### Step 6: Cron Jobs
 
@@ -120,8 +115,8 @@ sudo bash run5_websocket.sh
 sudo bash run6_cron_setup.sh
 ```
 
-- Installs mandatory cron jobs (Tron deposits, chart generation, price updates, email queue, etc.)
-- Optionally enables crons for: BTC, CryptoApis, Substrate, Blockgum, Cryptonote, Coinpayments
+- Installs mandatory cron jobs ([Tron](https://codono.com/chains/tron) deposits, chart generation, price updates, email queue, etc.)
+- Optionally enables crons for: [Bitcoin](https://codono.com/chains/bitcoin), [CryptoApIs](https://codono.com/integrations/cryptoapis), Substrate, Blockgum, Cryptonote, [Coinpayments](https://codono.com/integrations/coinpayments)
 
 ### Step 7: Show Admin Login
 
@@ -129,7 +124,7 @@ sudo bash run6_cron_setup.sh
 sudo bash run7_show_admin_login.sh
 ```
 
-Displays admin panel URL, login credentials, and 2FA QR code.
+Displays [admin panel](https://codono.com/features/admin-dashboard) URL, login credentials, and 2FA QR code.
 
 ### Step 8: Trading Engine (Optional)
 
@@ -137,7 +132,7 @@ Displays admin panel URL, login credentials, and 2FA QR code.
 sudo bash run8_trading_engine.sh
 ```
 
-Required for **Futures**, **Margin Trading**, and **Forex** modules.
+Required for [Futures Trading](https://codono.com/software/futures-trading), [Margin Trading](https://codono.com/software/margin-trading), and [Forex Trading](https://codono.com/software/forex-trading) modules.
 
 - Downloads the compiled trading engine binary to `/opt/trading-engine/`
 - Creates comprehensive `.env` configuration with credentials
@@ -176,7 +171,7 @@ Run the status check script to verify all services:
 sudo bash check_ubuntu_status.sh
 ```
 
-Checks: Nginx, PHP-FPM, MariaDB, Redis, Memcached, Supervisor/socketbot, Trading Engine, QuestDB, PHP modules, Redis auth, MySQL connection, and recent log errors.
+Checks: Nginx, PHP-FPM, MariaDB, Redis, Memcached, Supervisor/socketbot, Trading Engine, QuestDB, UFW, PHP modules, Redis auth, MySQL connection, and recent log errors.
 
 ## Architecture
 
@@ -272,7 +267,17 @@ nginx -t                             # Test config syntax
 cat /etc/nginx/sites-enabled/*.conf  # Review vhosts
 ```
 
+## Learn More
+
+- [Crypto Exchange Technology Stack Explained](https://codono.com/blog/crypto-exchange-technology-stack-explained)
+- [Security Architecture & Best Practices](https://codono.com/blog/crypto-exchange-security-architecture)
+- [API Integration & Trading Bot Setup](https://codono.com/blog/crypto-exchange-api-trading-bot-integration)
+- [Launch Checklist](https://codono.com/blog/crypto-exchange-launch-checklist)
+- [All Features](https://codono.com/features) | [Supported Blockchains](https://codono.com/chains) | [Integrations](https://codono.com/integrations)
+
 ## Support
 
 - Telegram: https://t.me/ctoninja
 - Website: https://codono.com
+- [API Documentation](https://codono.com/docs/api)
+- [Request a Demo](https://codono.com/demo)
