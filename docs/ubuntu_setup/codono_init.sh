@@ -148,12 +148,27 @@ verify_license() {
         exit 1
     fi
 
+    # Get license email from user
+    echo -e "\n${CYAN}Enter the email associated with your license:${NC}"
+    read -p "License Email: " LICENSE_EMAIL
+
+    if [ -z "$LICENSE_EMAIL" ]; then
+        print_error "Email cannot be empty"
+        exit 1
+    fi
+
+    # Validate email format
+    if [[ ! "$LICENSE_EMAIL" =~ ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$ ]]; then
+        print_error "Invalid email format: $LICENSE_EMAIL"
+        exit 1
+    fi
+
     print_info "Verifying license with Codono servers..."
 
     # Make API request to verify license
     RESPONSE=$(curl -s -X POST "$LICENSE_VERIFY_URL" \
         -H "Content-Type: application/json" \
-        -d "{\"license_key\": \"$LICENSE_KEY\", \"domain\": \"$API_DOMAIN\"}" \
+        -d "{\"license_key\": \"$LICENSE_KEY\", \"domain\": \"$API_DOMAIN\", \"email\": \"$LICENSE_EMAIL\"}" \
         --connect-timeout 30 \
         --max-time 60)
 
@@ -175,7 +190,8 @@ verify_license() {
         echo "Please check:"
         echo "  1. Your license key is correct"
         echo "  2. The domain matches your license"
-        echo "  3. Your license has not expired"
+        echo "  3. The email matches your license"
+        echo "  4. Your license has not expired"
         echo ""
         echo "Contact support: https://t.me/ctoninja"
         exit 1
